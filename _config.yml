@@ -37,9 +37,9 @@ defaults:
       # event_date: set this value to something like July 11 & 12
       event_date: July 8 & 9
       # event_place: set this value to something like Minneapolis
-      event_place: Minneapolis
+      event_place: Minneapolis, Minnesota
       # event_venue: set this value to the name of the venue, add 'the' if appropriate
-      event_venue: the McNamara Alumni Center
+      event_venue: McNamara Alumni Center
       # google maps link or share-shortlink to venue (defaults to McNamara)
       event_venue_link: "https://maps.app.goo.gl/EmfKT9J6HWwp7u6e9"
       # event_timezone: set this value to the IANA timezone name (e.g., America/Chicago, America/New_York)
@@ -54,11 +54,11 @@ defaults:
 
       # Homepage CTA
       # cta_button_text / cta_button_link: enable the orange "call to action" button
-      cta_button_text: Sponsor SRCCON!
-      cta_button_link: https://opennews.org/sponsors/
-      # cta_button_text: Propose a session!
-      # cta_button_link: /participation/form/
-      # form_link: set this value to the URL for the ticket purchase or registration form
+      # cta_button_text: Sponsor SRCCON!
+      # cta_button_link: https://opennews.org/sponsors/
+      cta_button_text: Propose a session!
+      cta_button_link: /participation/form/
+      form_link: set this value to the URL for the ticket purchase or registration form
       form_link: https://airtable.com/embed/appvmrSAI2PeiWEes/TK/form?backgroundColor=green
       
       # ⚠️ IMPORTANT "GATES" in page logic
@@ -67,9 +67,9 @@ defaults:
       # session_deadline_passed: set this value to true to swap out various "by deadline" links
       session_deadline_passed: false
       # session_deadline: proposals and stipend applications
-      session_deadline: April 9 at 5 p.m. ET
+      session_deadline: March 8 at 11:59 p.m. CT
       # session_confirm: date attendees will be notified
-      session_confirm: April 18
+      session_confirm: March 25
       
       # price_base: set this value to the base ticket price
       price_base: $295
