@@ -57,7 +57,7 @@ task :check do
   errors << "event_name is still set to 'SRCCON YYYY'" if defaults['event_name'] == 'SRCCON YYYY'
   errors << "event_date is still 'DATES' placeholder" if defaults['event_date'] == 'DATES'
   errors << "event_place is still 'PLACE' placeholder" if defaults['event_place'] == 'PLACE'
-  errors << "form_link is still set to the demo Airtable URL" if defaults['form_link'].to_s.include?('pagJcROoTohbsBLFw')
+  errors << "form_link is still set to the demo Airtable URL" if defaults['form_link'].to_s.include?('TK')
   errors << "session_deadline is still set to April Fools placeholder" if defaults['session_deadline'].to_s.include?('April 1')
   errors << "session_confirm is still set to Tax Day placeholder" if defaults['session_confirm'].to_s.include?('April 15')
   
@@ -81,6 +81,85 @@ task :check do
     warnings << "Ticket price #{price} has no dollar-sign prefix" unless price.to_s.start_with?('$')
     warnings << "Ticket price #{price} is not three digits" if cost && (cost.to_i < 100 || cost.to_i > 999)
   end
+
+  # verify no duplicate keys within each scope by parsing raw YAML (hash parsing loses duplicates)
+  yaml_content = File.read('_config.yml')
+  in_defaults = false
+  in_scope = false
+  in_values = false
+  values_indent = nil
+  scope_keys = []
+  scope_path = nil
+  all_duplicate_keys = []
+  
+  yaml_content.each_line do |line|
+    # Track when we enter/exit the defaults section
+    if line =~ /^defaults:/
+      in_defaults = true
+      next
+    elsif in_defaults && line =~ /^[a-z_]/
+      break # exited defaults section
+    end
+    
+    next unless in_defaults
+    
+    # Look for new scope entry
+    if line =~ /^\s+-\s+scope:/ || line =~ /^\s+scope:/
+      # Check previous scope for duplicates before starting new one
+      if scope_keys.any?
+        duplicate_keys = scope_keys.select { |k| scope_keys.count(k) > 1 }.uniq
+        if duplicate_keys.any?
+          scope_label = scope_path.nil? || scope_path.empty? ? "empty path scope" : "scope '#{scope_path}'"
+          all_duplicate_keys.concat(duplicate_keys.map { |k| "#{k} (in #{scope_label})" })
+        end
+      end
+      
+      in_scope = true
+      in_values = false
+      scope_keys = []
+      scope_path = nil
+    end
+    
+    # Capture the path for this scope
+    if in_scope && line =~ /^\s+path:\s*["']?([^"']*)["']?\s*$/
+      scope_path = $1
+    end
+    
+    # Look for values section within scope
+    if in_scope && line =~ /^(\s+)values:\s*$/
+      in_values = true
+      values_indent = $1.length + 2 # keys should be indented more than "values:"
+      next
+    end
+    
+    # Extract keys from values section
+    if in_values
+      current_indent = line[/^(\s*)/].length
+      
+      # Exit values section if we dedent
+      if line.strip != '' && current_indent < values_indent
+        in_values = false
+        in_scope = false
+        next
+      end
+      
+      # Extract key name (word characters followed by colon)
+      if line =~ /^\s{#{values_indent}}(\w+):/
+        scope_keys << $1
+      end
+    end
+  end
+  
+  # Check the last scope for duplicates
+  if scope_keys.any?
+    duplicate_keys = scope_keys.select { |k| scope_keys.count(k) > 1 }.uniq
+    if duplicate_keys.any?
+      scope_label = scope_path.nil? || scope_path.empty? ? "empty path scope" : "scope '#{scope_path}'"
+      all_duplicate_keys.concat(duplicate_keys.map { |k| "#{k} (in #{scope_label})" })
+    end
+  end
+  
+  errors << "Duplicate keys in defaults: #{all_duplicate_keys.join(', ')}" if all_duplicate_keys.any?
     
   if errors.any?
     puts "\n❌ Configuration Errors (MUST FIX):"
