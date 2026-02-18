@@ -21,8 +21,8 @@ deployment:
   bucket: 2026.srccon.org
   # AWS S3 bucket for staging deployments
   staging_bucket: staging.2026.srccon.org
-  # CloudFront distribution ID for cache invalidation (optional)
-  cloudfront_distribution_id: E1234ABCD5678
+  # CloudFront distribution ID for cache invalidation (not optional in production; ignored otherwise)
+  cloudfront_distribution_id: E1SHHQ6TNLTWGL
 
 defaults:
   - scope:
