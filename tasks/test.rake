@@ -390,7 +390,7 @@ namespace :test do
         # Verify that _config.yml can be parsed successfully
         begin
             yaml_content = File.read('_config.yml')
-            YAML.load_file('_config.yml')
+            YAML.safe_load_file('_config.yml')
         rescue => e
             errors << "_config.yml has syntax errors and could not be parsed: #{e.message}"
         end
