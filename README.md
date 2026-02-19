@@ -52,9 +52,17 @@ This means **less manual find-and-replace work** when setting up a new SRCCON si
 
 # Working locally with live reload
 
+**First-time setup:**
+```bash
+bundle install                    # Install dependencies
+bundle exec rake git:setup_hooks  # Enable pre-commit validation
+```
+
 `bundle exec rake default` - runs `:build`, `:check` and `:serve` commands on most file changes, so you can watch along with your config and file tweaks 
 
 View at [http://localhost:4000](http://localhost:4000)
+
+The pre-commit hook will automatically validate `_config.yml` before commits to catch errors early. To bypass for a single commit: `git commit --no-verify`
 
 ## Pre-Launch Checklist
 
@@ -267,6 +275,8 @@ bundle exec rake deploy:production DRY_RUN=false   # Deploy to production S3
 
 - **`bundler`** manages Ruby gems (Jekyll and plugins)
 - **`dependabot`** automatically creates PRs for dependency updates
+  - Configured for weekly updates (Mondays) in `.github/dependabot.yml`
+  - GitHub Actions use pinned major versions (e.g., `@v6`) for security and reproducibility
 - Weekly automated health checks catch breaking changes
 
 ### Migration from Travis CI-backed sites to 2026 latest
