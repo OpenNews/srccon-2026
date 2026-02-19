@@ -47,7 +47,7 @@ jobs:
         if: github.event_name == 'pull_request' && github.actor != 'dependabot[bot]'
         id: config
         run: |
-          STAGING_BUCKET=$(ruby -ryaml -e "config = YAML.load_file('_config.yml'); deployment = config['deployment'] || {}; puts deployment['staging_bucket'].to_s")
+          STAGING_BUCKET=$(ruby -ryaml -e "config = YAML.safe_load_file('_config.yml'); deployment = config['deployment'] || {}; puts deployment['staging_bucket'].to_s")
           echo "staging_bucket=$STAGING_BUCKET" >> $GITHUB_OUTPUT
       
       - name: Configure AWS credentials
