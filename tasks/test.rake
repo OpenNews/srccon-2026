@@ -387,12 +387,12 @@ namespace :test do
             warnings << "Git hooks path is '#{hooks_path}' instead of '.githooks'"
         end
         
-        # Test that validate_yaml task exists and works
+        # Verify that _config.yml can be parsed successfully
         begin
             yaml_content = File.read('_config.yml')
             YAML.load_file('_config.yml')
         rescue => e
-            errors << "_config.yml has syntax errors that validate_yaml should catch: #{e.message}"
+            errors << "_config.yml has syntax errors and could not be parsed: #{e.message}"
         end
         
         if errors.any?
