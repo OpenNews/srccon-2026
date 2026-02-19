@@ -14,76 +14,15 @@ def deployment_config
   end
   
   begin
-    config = YAML.load_file('_config.yml')
+    config = YAML.safe_load_file('_config.yml')
     @deployment_config = config['deployment'] || {}
   rescue => e
     abort "❌ Error loading _config.yml: #{e.message}"
   end
 end
 
-# Default task
-task default: [:build, :check, :serve]
-
-desc "Validate configuration has been updated from template defaults"
-task :check do
-  puts "Validating _config.yml configuration..."
-  
-  unless File.exist?('_config.yml')
-    abort "❌ _config.yml not found. Are you in the project root directory?"
-  end
-  
-  begin
-    config = YAML.load_file('_config.yml')
-  rescue => e
-    abort "❌ Error parsing _config.yml: #{e.message}"
-  end
-  
-  unless config['defaults'].is_a?(Array)
-    abort "❌ _config.yml is missing 'defaults' array"
-  end
-  
-  default_scope = config['defaults'].find { |d| d['scope'] && d['scope']['path'] == '' }
-  unless default_scope && default_scope['values']
-    abort "❌ _config.yml is missing default scope with empty path"
-  end
-  
-  defaults = default_scope['values']
-  
-  errors = []
-  warnings = []
-  
-  # Check for placeholder values that need updating
-  errors << "root_url is still set to 'https://2025.srccon.org'" if defaults['root_url'] == 'https://2025.srccon.org'
-  errors << "event_name is still set to 'SRCCON YYYY'" if defaults['event_name'] == 'SRCCON YYYY'
-  errors << "event_date is still 'DATES' placeholder" if defaults['event_date'] == 'DATES'
-  errors << "event_place is still 'PLACE' placeholder" if defaults['event_place'] == 'PLACE'
-  errors << "form_link is still set to the demo Airtable URL" if defaults['form_link'].to_s.include?('TK')
-  errors << "session_deadline is still set to April Fools placeholder" if defaults['session_deadline'].to_s.include?('April 1')
-  errors << "session_confirm is still set to Tax Day placeholder" if defaults['session_confirm'].to_s.include?('April 15')
-  
-  # Check for CNAME file (should be deleted or customized)
-  if File.exist?('CNAME')
-    cname_content = File.read('CNAME').strip
-    errors << "CNAME file exists with demo site URL (#{cname_content}). Delete or update for your event." if cname_content.include?('srccon.org')
-  end
-  
-  warnings << "event_timezone_offset is empty (needed for live sessions feature)" if defaults['event_timezone_offset'].nil? || defaults['event_timezone_offset'].empty?
-  warnings << "google_analytics_id is empty (no tracking will be enabled)" if defaults['google_analytics_id'].nil? || defaults['google_analytics_id'].empty?
-  
-  # verify prices are in $XXX format
-  [
-    defaults['price_base'], 
-    defaults['price_med'], 
-    defaults['price_full'], 
-    defaults['price_stipend']
-  ].each do |price|
-    cost = price.to_s.gsub(/^\$(\d{3})$/) { |m| $1 } # extract digits
-    warnings << "Ticket price #{price} has no dollar-sign prefix" unless price.to_s.start_with?('$')
-    warnings << "Ticket price #{price} is not three digits" if cost && (cost.to_i < 100 || cost.to_i > 999)
-  end
-
-  # verify no duplicate keys within each scope by parsing raw YAML (hash parsing loses duplicates)
-  yaml_content = File.read('_config.yml')
+# Helper: check for duplicate keys within each scope of the defaults section
+def check_duplicate_keys_in_defaults(yaml_content)
   in_defaults = false
   in_scope = false
   in_values = false
@@ -159,7 +98,80 @@ task :check do
     end
   end
   
-  errors << "Duplicate keys in defaults: #{all_duplicate_keys.join(', ')}" if all_duplicate_keys.any?
+  all_duplicate_keys
+end
+
+# Validate YAML syntax and structure before any tasks that depend on config
+desc "Validate _config.yml has valid YAML syntax and no duplicate keys"
+task :validate_yaml do
+  unless File.exist?('_config.yml')
+    abort "❌ _config.yml not found. Are you in the project root directory?"
+  end
+  
+  # Check for valid YAML syntax
+  begin
+    YAML.safe_load_file('_config.yml')
+  rescue => e
+    abort "❌ Invalid YAML syntax in _config.yml: #{e.message}"
+  end
+  
+  # Check for duplicate keys (YAML parser silently ignores these)
+  yaml_content = File.read('_config.yml')
+  duplicate_keys = check_duplicate_keys_in_defaults(yaml_content)
+  if duplicate_keys.any?
+    abort "❌ Duplicate keys found in _config.yml defaults: #{duplicate_keys.join(', ')}"
+  end
+end
+
+# Default task
+task default: [:validate_yaml, :build, :check, :serve]
+
+desc "Validate configuration has been updated from template defaults"
+task :check => :validate_yaml do
+  puts "Validating _config.yml configuration..."
+  
+  config = YAML.safe_load_file('_config.yml')
+  
+  unless config['defaults'].is_a?(Array)
+    abort "❌ _config.yml is missing 'defaults' array"
+  end
+  
+  default_scope = config['defaults'].find { |d| d['scope'] && d['scope']['path'] == '' }
+  unless default_scope && default_scope['values']
+    abort "❌ _config.yml is missing default scope with empty path"
+  end
+  
+  defaults = default_scope['values']
+  
+  errors = []
+  warnings = []
+  
+  # Check for placeholder values that need updating
+  errors << "root_url is still set to 'https://2025.srccon.org'" if defaults['root_url'] == 'https://2025.srccon.org'
+  errors << "event_name is still set to 'SRCCON YYYY'" if defaults['event_name'] == 'SRCCON YYYY'
+  errors << "event_date is still 'DATES' placeholder" if defaults['event_date'] == 'DATES'
+  errors << "event_place is still 'PLACE' placeholder" if defaults['event_place'] == 'PLACE'
+  errors << "form_link is still set to the demo Airtable URL" if defaults['form_link'].to_s.include?('TK')
+  errors << "session_deadline is still set to April Fools placeholder" if defaults['session_deadline'].to_s.include?('April 1')
+  errors << "session_confirm is still set to Tax Day placeholder" if defaults['session_confirm'].to_s.include?('April 15')
+  
+  cname_content = File.read('CNAME').strip
+  errors << "CNAME file still has demo site URL, update with your event." if cname_content.include?('2025.srccon.org')
+  
+  warnings << "event_timezone_offset is empty (needed for live sessions feature)" if defaults['event_timezone_offset'].nil? || defaults['event_timezone_offset'].empty?
+  warnings << "google_analytics_id is empty (no tracking will be enabled)" if defaults['google_analytics_id'].nil? || defaults['google_analytics_id'].empty?
+  
+  # verify prices are in $XXX format
+  [
+    defaults['price_base'], 
+    defaults['price_med'], 
+    defaults['price_full'], 
+    defaults['price_stipend']
+  ].each do |price|
+    cost = price.to_s.gsub(/^\$(\d{3})$/) { |m| $1 } # extract digits
+    warnings << "Ticket price #{price} has no dollar-sign prefix" unless price.to_s.start_with?('$')
+    warnings << "Ticket price #{price} is not three digits" if cost && (cost.to_i < 100 || cost.to_i > 999)
+  end
     
   if errors.any?
     puts "\n❌ Configuration Errors (MUST FIX):"
@@ -172,12 +184,12 @@ task :check do
   end
   
   if errors.empty?
-    puts "✅ Configuration looks good!"
+    puts "\n✅ Configuration looks good!"
   end
 end
 
 desc "Build the Jekyll site"
-task :build do
+task :build => :validate_yaml do
   puts "Building Jekyll site..."
   options = {
     "source" => ".",
@@ -200,7 +212,7 @@ end
 
 namespace :deploy do
   desc "Run all pre-deployment checks"
-  task :precheck => [:check, :build, 'test:all'] do
+  task :precheck => [:validate_yaml, :check, :build, 'test:all'] do
     puts "\n✅ All pre-deployment checks passed!"
     puts "\nDeploy with:"
     puts "  rake deploy:staging          # Dry-run to staging"
@@ -212,7 +224,7 @@ namespace :deploy do
   # Common S3 sync arguments
   S3_ARGS = "--delete --cache-control 'public, max-age=3600'"
 
-  desc "Deploy to staging (dry-run by default)"
+  desc "Deploy to staging (dry-run by default; mostly run by GitHub Actions)"
   namespace :staging do
     task :default => :dryrun
     
@@ -245,7 +257,7 @@ namespace :deploy do
     end
   end
 
-  desc "Deploy to production (dry-run by default)"
+  desc "Deploy to production (dry-run by default; mostly run by GitHub Actions)"
   namespace :production do
     task :default => :dryrun
 
@@ -292,6 +304,38 @@ namespace :deploy do
       end
       
       puts "\n🎉 Successfully deployed to production!"
+    end
+  end
+end
+
+namespace :git do
+  desc "Install Git hooks for pre-commit validation"
+  task :install_hooks do
+    hook_source = File.join(__dir__, 'tasks', 'pre-commit')
+    hook_dest = File.join(__dir__, '.git', 'hooks', 'pre-commit')
+    
+    unless File.exist?(hook_source)
+      abort "❌ Hook source not found: #{hook_source}"
+    end
+    
+    # Copy the hook
+    FileUtils.cp(hook_source, hook_dest)
+    FileUtils.chmod(0755, hook_dest)
+    
+    puts "✅ Pre-commit hook installed successfully!"
+    puts "   Config validation will now run automatically before each commit."
+    puts "   To bypass: git commit --no-verify"
+  end
+  
+  desc "Uninstall Git hooks"
+  task :uninstall_hooks do
+    hook_dest = File.join(__dir__, '.git', 'hooks', 'pre-commit')
+    
+    if File.exist?(hook_dest)
+      FileUtils.rm(hook_dest)
+      puts "✅ Pre-commit hook removed"
+    else
+      puts "ℹ️  No pre-commit hook found"
     end
   end
 end
