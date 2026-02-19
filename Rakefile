@@ -14,7 +14,7 @@ def deployment_config
   end
   
   begin
-    config = YAML.load_file('_config.yml')
+    config = YAML.safe_load_file('_config.yml')
     @deployment_config = config['deployment'] || {}
   rescue => e
     abort "❌ Error loading _config.yml: #{e.message}"
@@ -110,7 +110,7 @@ task :validate_yaml do
   
   # Check for valid YAML syntax
   begin
-    YAML.load_file('_config.yml')
+    YAML.safe_load_file('_config.yml')
   rescue => e
     abort "❌ Invalid YAML syntax in _config.yml: #{e.message}"
   end
@@ -130,7 +130,7 @@ desc "Validate configuration has been updated from template defaults"
 task :check => :validate_yaml do
   puts "Validating _config.yml configuration..."
   
-  config = YAML.load_file('_config.yml')
+  config = YAML.safe_load_file('_config.yml')
   
   unless config['defaults'].is_a?(Array)
     abort "❌ _config.yml is missing 'defaults' array"
@@ -155,8 +155,10 @@ task :check => :validate_yaml do
   errors << "session_deadline is still set to April Fools placeholder" if defaults['session_deadline'].to_s.include?('April 1')
   errors << "session_confirm is still set to Tax Day placeholder" if defaults['session_confirm'].to_s.include?('April 15')
   
-  cname_content = File.read('CNAME').strip
-  errors << "CNAME file still has demo site URL, update with your event." if cname_content.include?('2025.srccon.org')
+  if File.exist?('CNAME')
+    cname_content = File.read('CNAME').strip
+    errors << "CNAME file still has demo site URL, update with your event." if cname_content.include?('2025.srccon.org')
+  end
   
   warnings << "event_timezone_offset is empty (needed for live sessions feature)" if defaults['event_timezone_offset'].nil? || defaults['event_timezone_offset'].empty?
   warnings << "google_analytics_id is empty (no tracking will be enabled)" if defaults['google_analytics_id'].nil? || defaults['google_analytics_id'].empty?
