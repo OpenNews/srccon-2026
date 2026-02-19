@@ -339,11 +339,153 @@ namespace :test do
         :page_config,
         :placeholders,
         :a11y,
-        :performance
+        :performance,
+        :git_hooks,
+        :validate_yaml_task,
+        :workflows
         # :layouts
     ] do
         puts "\n" + "=" * 60
         puts "✅ All validation tests passed!"
         puts "=" * 60
+    end
+
+    desc "Validate Git hooks are properly configured and functional"
+    task :git_hooks do
+        puts "testing git hooks configuration..."
+        errors = []
+        warnings = []
+        
+        # Check if .githooks directory exists and has pre-commit hook
+        unless Dir.exist?('.githooks')
+            errors << ".githooks directory not found"
+        else
+            unless File.exist?('.githooks/pre-commit')
+                errors << ".githooks/pre-commit hook file not found"
+            else
+                # Check if pre-commit is executable
+                unless File.executable?('.githooks/pre-commit')
+                    errors << ".githooks/pre-commit is not executable (run: chmod +x .githooks/pre-commit)"
+                end
+                
+                # Check content of pre-commit hook
+                content = File.read('.githooks/pre-commit')
+                unless content.include?('validate_yaml')
+                    warnings << "pre-commit hook doesn't call validate_yaml task"
+                end
+                unless content.include?('_config.yml')
+                    warnings << "pre-commit hook doesn't check for _config.yml changes"
+                end
+            end
+        end
+        
+        # Check if user has configured git to use hooks
+        hooks_path = `git config core.hooksPath`.strip
+        if hooks_path.empty?
+            warnings << "Git hooks not configured locally (run: git config core.hooksPath .githooks)"
+        elsif hooks_path != '.githooks'
+            warnings << "Git hooks path is '#{hooks_path}' instead of '.githooks'"
+        end
+        
+        # Verify that _config.yml can be parsed successfully
+        begin
+            YAML.safe_load_file('_config.yml')
+        rescue => e
+            errors << "_config.yml has syntax errors and could not be parsed: #{e.message}"
+        end
+        
+        if errors.any?
+            puts "❌ Git hooks errors:"
+            errors.each { |e| puts "  - #{e}" }
+            exit 1
+        elsif warnings.any?
+            puts "⚠️  Git hooks warnings:"
+            warnings.each { |w| puts "  - #{w}" }
+            puts "\n💡 Hooks are present but may need local setup: git config core.hooksPath .githooks"
+        else
+            puts "✅ Git hooks configured correctly"
+        end
+    end
+
+    desc "Validate YAML validation task works correctly"
+    task :validate_yaml_task do
+        puts "testing validate_yaml task functionality..."
+        errors = []
+        
+        # Test that the task exists
+        unless Rake::Task.task_defined?(:validate_yaml)
+            errors << "validate_yaml task not defined in Rakefile"
+        end
+        
+        # Test that check_duplicate_keys_in_defaults function exists
+        yaml_content = File.read('_config.yml')
+        begin
+            # Try to call the helper function
+            dupes = check_duplicate_keys_in_defaults(yaml_content)
+            if dupes.any?
+                errors << "Found duplicate keys in _config.yml: #{dupes.join(', ')}"
+            end
+        rescue NameError => e
+            errors << "check_duplicate_keys_in_defaults helper function not found: #{e.message}"
+        end
+        
+        # Verify that validate_yaml is a prerequisite for key tasks
+        [:check, :build].each do |task_name|
+            if Rake::Task.task_defined?(task_name)
+                task = Rake::Task[task_name]
+                unless task.prerequisites.include?('validate_yaml')
+                    errors << "#{task_name} task should have validate_yaml as prerequisite"
+                end
+            end
+        end
+        
+        if errors.any?
+            puts "❌ validate_yaml task errors:"
+            errors.each { |e| puts "  - #{e}" }
+            exit 1
+        else
+            puts "✅ validate_yaml task configured correctly"
+        end
+    end
+
+    desc "Validate GitHub Actions workflows use validation tasks"
+    task :workflows do
+        puts "testing GitHub Actions workflows..."
+        errors = []
+        warnings = []
+        
+        # Check deploy workflow
+        if File.exist?('.github/workflows/deploy.yml')
+            content = File.read('.github/workflows/deploy.yml')
+            unless content.include?('validate_yaml')
+                errors << "deploy.yml workflow doesn't call validate_yaml before building"
+            end
+            unless content.include?('jekyll build')
+                warnings << "deploy.yml workflow doesn't seem to build the site"
+            end
+        else
+            warnings << ".github/workflows/deploy.yml not found"
+        end
+        
+        # Check test workflow
+        if File.exist?('.github/workflows/test.yml')
+            content = File.read('.github/workflows/test.yml')
+            unless content.include?('validate_yaml')
+                errors << "test.yml workflow doesn't call validate_yaml before building"
+            end
+        else
+            warnings << ".github/workflows/test.yml not found"
+        end
+        
+        if errors.any?
+            puts "❌ Workflow errors:"
+            errors.each { |e| puts "  - #{e}" }
+            exit 1
+        elsif warnings.any?
+            puts "⚠️  Workflow warnings:"
+            warnings.each { |w| puts "  - #{w}" }
+        else
+            puts "✅ GitHub Actions workflows configured correctly"
+        end
     end
 end

@@ -309,33 +309,12 @@ namespace :deploy do
 end
 
 namespace :git do
-  desc "Install Git hooks for pre-commit validation"
-  task :install_hooks do
-    hook_source = File.join(__dir__, 'tasks', 'pre-commit')
-    hook_dest = File.join(__dir__, '.git', 'hooks', 'pre-commit')
-    
-    unless File.exist?(hook_source)
-      abort "❌ Hook source not found: #{hook_source}"
-    end
-    
-    # Copy the hook
-    FileUtils.cp(hook_source, hook_dest)
-    FileUtils.chmod(0755, hook_dest)
-    
-    puts "✅ Pre-commit hook installed successfully!"
-    puts "   Config validation will now run automatically before each commit."
-    puts "   To bypass: git commit --no-verify"
-  end
-  
-  desc "Uninstall Git hooks"
-  task :uninstall_hooks do
-    hook_dest = File.join(__dir__, '.git', 'hooks', 'pre-commit')
-    
-    if File.exist?(hook_dest)
-      FileUtils.rm(hook_dest)
-      puts "✅ Pre-commit hook removed"
-    else
-      puts "ℹ️  No pre-commit hook found"
-    end
+  desc "Configure Git to use pre-commit validation hooks"
+  task :setup_hooks do
+    sh "git config core.hooksPath .githooks"
+    puts "✅ Git hooks configured!"
+    puts "   Pre-commit validation will run automatically before each commit."
+    puts "   Hooks are tracked in .githooks/ directory."
+    puts "   To bypass a single commit: git commit --no-verify"
   end
 end

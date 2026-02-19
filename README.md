@@ -52,9 +52,17 @@ This means **less manual find-and-replace work** when setting up a new SRCCON si
 
 # Working locally with live reload
 
+**First-time setup:**
+```bash
+bundle install                    # Install dependencies
+bundle exec rake git:setup_hooks  # Enable pre-commit validation
+```
+
 `bundle exec rake default` - runs `:build`, `:check` and `:serve` commands on most file changes, so you can watch along with your config and file tweaks 
 
 View at [http://localhost:4000](http://localhost:4000)
+
+The pre-commit hook will automatically validate `_config.yml` before commits to catch errors early. To bypass for a single commit: `git commit --no-verify`
 
 ## Pre-Launch Checklist
 
@@ -147,11 +155,13 @@ This template uses GitHub Actions for automated deployment to S3 and CloudFront.
 
 ### Required Secrets
 
-With OIDC authentication and deployment configuration in `_config.yml`, only **one organization-level secret** is required.
+With OIDC authentication and deployment configuration in `_config.yml`, only **one Organization-level secret** is required.
 
-**Organization-Level Secret** (Settings → Secrets and variables → Actions at https://github.com/organizations/OpenNews/settings/secrets/actions):
+**Organization Secret** (Organization Settings → Secrets and variables → Actions → Organization secrets):
 
-- `AWS_ROLE_ARN` - AWS IAM role ARN for OIDC authentication (e.g., `arn:aws:iam::123456789012:role/GitHubActions-SRCCON-Deploy`). This role must have permissions for `s3:PutObject`, `s3:DeleteObject`, `s3:ListBucket`, `cloudfront:CreateInvalidation`
+- `AWS_ROLE_ARN` - AWS IAM role ARN for OIDC authentication (e.g., `arn:aws:iam::123456789012:role/GitHubActions-SRCCON-Deploy`)
+  - Required permissions: `s3:PutObject`, `s3:DeleteObject`, `s3:ListBucket`, `cloudfront:CreateInvalidation`
+  - Note: Secrets are not accessible to Dependabot PRs by default (this is intentional for security)
 
 **All other deployment configuration** (bucket names, CloudFront distribution ID) is stored in each repository's `_config.yml` file:
 
@@ -162,11 +172,11 @@ deployment:
 ```
 
 **Benefits of this approach:**
-- ✅ Single organization secret to maintain (the IAM role ARN)
+- ✅ Single organization-level secret shared across all SRCCON repositories (the IAM role ARN)
 - ✅ Bucket names visible in code (easier to verify and update)
-- ✅ No repository-level secrets needed
 - ✅ Each event repository is self-contained
 - ✅ Deployment config is version-controlled
+- ✅ Secrets not exposed to Dependabot PRs (security best practice)
 
 ### Deployment Workflow
 
@@ -181,10 +191,17 @@ The repository includes three GitHub Actions workflows:
 
 **2. Test Workflow** (`.github/workflows/test.yml`)
 - Runs on all PRs and non-deployment branches
+- Validates configuration (YAML syntax, duplicate keys)
 - Validates Jekyll build succeeds
 - Checks internal links with html-proofer
-- Tests deployment commands with `--dryrun` flag
-- No artifacts saved (test locally if needed)
+- Tests deployment commands with `--dryrun` flag (PRs only, skipped for Dependabot)
+- Compatible with Dependabot PRs (AWS steps automatically skipped)
+
+**Test Workflow Scenarios:**
+- **Dependabot PRs**: Runs all validation (config, build, HTML) but skips AWS credential steps
+- **Contributor PRs**: Full validation including AWS deployment dry-run
+- **Fork PRs**: Core validation passes, AWS steps use `continue-on-error`
+- **Feature branches**: Quick validation on push without AWS overhead
 
 **3. Health Check Workflow** (`.github/workflows/health-check.yml`)
 - Runs weekly (Mondays at noon UTC)
@@ -258,6 +275,8 @@ bundle exec rake deploy:production DRY_RUN=false   # Deploy to production S3
 
 - **`bundler`** manages Ruby gems (Jekyll and plugins)
 - **`dependabot`** automatically creates PRs for dependency updates
+  - Configured for weekly updates (Mondays) in `.github/dependabot.yml`
+  - GitHub Actions use pinned major versions (e.g., `@v6`) for security and reproducibility
 - Weekly automated health checks catch breaking changes
 
 ### Migration from Travis CI-backed sites to 2026 latest
@@ -325,7 +344,8 @@ This project uses **OpenID Connect (OIDC)** for secure, keyless AWS authenticati
    }
    ```
 
-4. **Set the role ARN as an organization secret:**
+4. **Set the role ARN as an Organization-level secret:**
+   - Go to Organization Settings → Secrets and variables → Actions → Organization secrets
    - Secret name: `AWS_ROLE_ARN`
    - Value: `arn:aws:iam::YOUR_ACCOUNT_ID:role/GitHubActions-SRCCON-Deploy`
 
@@ -338,8 +358,8 @@ This project uses **OpenID Connect (OIDC)** for secure, keyless AWS authenticati
 - Commit the new `Gemfile.lock`
 
 **Deployment dry-run fails in PRs:**
-- Check that AWS credentials are configured as repository secrets
-- Ensure secrets are available to PR builds (may need to adjust workflow permissions)
+- Check that AWS role ARN is configured as an Organization-level secret
+- Ensure the IAM role has correct trust policy for GitHub Actions OIDC
 
 **HTML validation reports false positives:**
 - Adjust html-proofer flags in `.github/workflows/test.yml`

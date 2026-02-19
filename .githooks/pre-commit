@@ -1,0 +1,25 @@
+#!/bin/bash
+# Git pre-commit hook to validate configuration before committing
+# This hook is automatically enabled via git config core.hooksPath
+
+set -e
+
+echo "Running pre-commit validation checks..."
+
+# Check if _config.yml has changes staged
+if git diff --cached --name-only | grep -q "_config.yml"; then
+  echo "Validating _config.yml..."
+  
+  # Run YAML validation
+  if ! bundle exec rake validate_yaml 2>&1; then
+    echo ""
+    echo "❌ Commit blocked: _config.yml has validation errors."
+    echo "   Fix the errors above and try again."
+    exit 1
+  fi
+  
+  echo "✅ _config.yml validation passed"
+fi
+
+echo "✅ Pre-commit checks passed"
+exit 0
