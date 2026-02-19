@@ -14,7 +14,7 @@ def deployment_config
   end
   
   begin
-    config = YAML.load_file('_config.yml')
+    config = YAML.safe_load_file('_config.yml')
     @deployment_config = config['deployment'] || {}
   rescue => e
     abort "❌ Error loading _config.yml: #{e.message}"
@@ -110,7 +110,7 @@ task :validate_yaml do
   
   # Check for valid YAML syntax
   begin
-    YAML.load_file('_config.yml')
+    YAML.safe_load_file('_config.yml')
   rescue => e
     abort "❌ Invalid YAML syntax in _config.yml: #{e.message}"
   end
@@ -130,7 +130,7 @@ desc "Validate configuration has been updated from template defaults"
 task :check => :validate_yaml do
   puts "Validating _config.yml configuration..."
   
-  config = YAML.load_file('_config.yml')
+  config = YAML.safe_load_file('_config.yml')
   
   unless config['defaults'].is_a?(Array)
     abort "❌ _config.yml is missing 'defaults' array"
@@ -304,6 +304,38 @@ namespace :deploy do
       end
       
       puts "\n🎉 Successfully deployed to production!"
+    end
+  end
+end
+
+namespace :git do
+  desc "Install Git hooks for pre-commit validation"
+  task :install_hooks do
+    hook_source = File.join(__dir__, 'tasks', 'pre-commit')
+    hook_dest = File.join(__dir__, '.git', 'hooks', 'pre-commit')
+    
+    unless File.exist?(hook_source)
+      abort "❌ Hook source not found: #{hook_source}"
+    end
+    
+    # Copy the hook
+    FileUtils.cp(hook_source, hook_dest)
+    FileUtils.chmod(0755, hook_dest)
+    
+    puts "✅ Pre-commit hook installed successfully!"
+    puts "   Config validation will now run automatically before each commit."
+    puts "   To bypass: git commit --no-verify"
+  end
+  
+  desc "Uninstall Git hooks"
+  task :uninstall_hooks do
+    hook_dest = File.join(__dir__, '.git', 'hooks', 'pre-commit')
+    
+    if File.exist?(hook_dest)
+      FileUtils.rm(hook_dest)
+      puts "✅ Pre-commit hook removed"
+    else
+      puts "ℹ️  No pre-commit hook found"
     end
   end
 end
