@@ -164,7 +164,7 @@ deployment:
 ```
 
 **Benefits of this approach:**
-- ✅ Single repository secret per event site (the IAM role ARN)
+- ✅ Single organization-level secret shared across all SRCCON repositories (the IAM role ARN)
 - ✅ Bucket names visible in code (easier to verify and update)
 - ✅ Each event repository is self-contained
 - ✅ Deployment config is version-controlled
