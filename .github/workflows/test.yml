@@ -1,3 +1,4 @@
+# yaml-language-server: $schema=https://json.schemastore.org/github-workflow.json
 name: Test Build
 
 on:
@@ -28,6 +29,9 @@ jobs:
           ruby-version: '.ruby-version'
           bundler-cache: true
       
+      - name: Validate configuration
+        run: bundle exec rake validate_yaml
+      
       - name: Build Jekyll site
         run: bundle exec jekyll build --verbose
       
@@ -40,14 +44,15 @@ jobs:
             --allow-hash-href
       
       - name: Extract deployment config from _config.yml
-        if: github.event_name == 'pull_request'
+        if: github.event_name == 'pull_request' && github.actor != 'dependabot[bot]'
         id: config
         run: |
-          STAGING_BUCKET=$(ruby -ryaml -e "config = YAML.load_file('_config.yml'); puts config['deployment']['staging_bucket']")
+          STAGING_BUCKET=$(ruby -ryaml -e "config = YAML.load_file('_config.yml'); deployment = config['deployment'] || {}; puts deployment['staging_bucket'].to_s")
           echo "staging_bucket=$STAGING_BUCKET" >> $GITHUB_OUTPUT
       
       - name: Configure AWS credentials
-        if: github.event_name == 'pull_request'
+        if: github.event_name == 'pull_request' && github.actor != 'dependabot[bot]'
+        continue-on-error: true
         uses: aws-actions/configure-aws-credentials@v4
         with:
           role-to-assume: ${{ secrets.AWS_ROLE_ARN }}
@@ -55,10 +60,16 @@ jobs:
           role-session-name: Test-${{ github.event.repository.name }}-${{ github.run_id }}
       
       - name: Test deployment (dry-run)
-        if: github.event_name == 'pull_request'
+        if: github.event_name == 'pull_request' && github.actor != 'dependabot[bot]'
+        continue-on-error: true
         run: |
-          echo "Testing S3 sync command (dry-run)..."
-          aws s3 sync _site/ s3://${{ steps.config.outputs.staging_bucket }} \
-            --dryrun \
-            --delete \
-            --cache-control "public, max-age=3600"
+          if [ -n "${{ steps.config.outputs.staging_bucket }}" ]; then
+            echo "Testing S3 sync command (dry-run)..."
+            aws s3 sync _site/ s3://${{ steps.config.outputs.staging_bucket }} \
+              --dryrun \
+              --delete \
+              --cache-control "public, max-age=3600"
+          else
+            echo "Skipping: No staging bucket configured"
+          fi
+

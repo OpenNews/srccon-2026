@@ -1,3 +1,4 @@
+# yaml-language-server: $schema=https://json.schemastore.org/github-workflow.json
 name: Deploy to S3
 
 on:
@@ -23,6 +24,9 @@ jobs:
         with:
           ruby-version: '.ruby-version'
           bundler-cache: true
+      
+      - name: Validate configuration
+        run: bundle exec rake validate_yaml
       
       - name: Build Jekyll site
         run: bundle exec jekyll build
