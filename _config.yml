@@ -59,7 +59,7 @@ defaults:
       cta_button_text: Propose a session!
       cta_button_link: /participation/form/
       # form_link: set this value to the URL for the ticket purchase or registration form
-      form_link: https://airtable.com/apph4nQHGI9JBTCHe/pagGXNa51i21tMFaJ/form
+      form_link: https://airtable.com/embed/apph4nQHGI9JBTCHe/pagGXNa51i21tMFaJ/form
       
       # ⚠️ IMPORTANT "GATES" in page logic
       # schedule_live: set this value to true when the program should be exposed on the site
