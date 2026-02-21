@@ -65,5 +65,5 @@ task :setup do
 
   # Summary and next steps
   puts "\n✅ Setup complete! You're now on the staging branch."
-  puts "If you prefer to work via feature branchs, go ahead and branch off `staging` (but you'll still need `staging`)"
+  puts "If you prefer to work via feature branches, go ahead and branch off `staging` (but you'll still need `staging`)"
 end
