@@ -1,5 +1,6 @@
 require 'jekyll'
 require 'yaml'
+require 'psych'
 require 'fileutils'
 
 # Load test:* tasks from separate file
@@ -21,114 +22,57 @@ def deployment_config
   end
 end
 
-# Helper: check for duplicate keys within each scope of the defaults section
-def check_duplicate_keys_in_defaults(yaml_content)
-  in_defaults = false
-  in_scope = false
-  in_values = false
-  values_indent = nil
-  scope_keys = []
-  scope_path = nil
-  all_duplicate_keys = []
-  
-  yaml_content.each_line do |line|
-    # Track when we enter/exit the defaults section
-    if line =~ /^defaults:/
-      in_defaults = true
-      next
-    elsif in_defaults && line =~ /^[a-z_]/
-      break # exited defaults section
-    end
-    
-    next unless in_defaults
-    
-    # Look for new scope entry
-    if line =~ /^\s+-\s+scope:/ || line =~ /^\s+scope:/
-      # Check previous scope for duplicates before starting new one
-      if scope_keys.any?
-        duplicate_keys = scope_keys.select { |k| scope_keys.count(k) > 1 }.uniq
-        if duplicate_keys.any?
-          scope_label = scope_path.nil? || scope_path.empty? ? "empty path scope" : "scope '#{scope_path}'"
-          all_duplicate_keys.concat(duplicate_keys.map { |k| "#{k} (in #{scope_label})" })
-        end
-      end
-      
-      in_scope = true
-      in_values = false
-      scope_keys = []
-      scope_path = nil
-    end
-    
-    # Capture the path for this scope
-    if in_scope && line =~ /^\s+path:\s*["']?([^"']*)["']?\s*$/
-      scope_path = $1
-    end
-    
-    # Look for values section within scope
-    if in_scope && line =~ /^(\s+)values:\s*$/
-      in_values = true
-      values_indent = $1.length + 2 # keys should be indented more than "values:"
-      next
-    end
-    
-    # Extract keys from values section
-    if in_values
-      current_indent = line[/^(\s*)/].length
-      
-      # Exit values section if we dedent
-      if line.strip != '' && current_indent < values_indent
-        in_values = false
-        in_scope = false
-        next
-      end
-      
-      # Extract key name (word characters followed by colon)
-      if line =~ /^\s{#{values_indent}}(\w+):/
-        scope_keys << $1
-      end
+# Recursively walk a Psych AST node and collect duplicate mapping keys
+def collect_yaml_duplicate_keys(node, file, errors = [])
+  return errors unless node.respond_to?(:children) && node.children
+
+  if node.is_a?(Psych::Nodes::Mapping)
+    keys = node.children.each_slice(2).map { |k, _| k.value if k.respond_to?(:value) }.compact
+    keys.group_by(&:itself).each do |key, hits|
+      errors << "#{file}: duplicate key '#{key}'" if hits.size > 1
     end
   end
-  
-  # Check the last scope for duplicates
-  if scope_keys.any?
-    duplicate_keys = scope_keys.select { |k| scope_keys.count(k) > 1 }.uniq
-    if duplicate_keys.any?
-      scope_label = scope_path.nil? || scope_path.empty? ? "empty path scope" : "scope '#{scope_path}'"
-      all_duplicate_keys.concat(duplicate_keys.map { |k| "#{k} (in #{scope_label})" })
-    end
-  end
-  
-  all_duplicate_keys
+
+  node.children.each { |child| collect_yaml_duplicate_keys(child, file, errors) }
+  errors
 end
 
-# Validate YAML syntax and structure before any tasks that depend on config
-desc "Validate _config.yml has valid YAML syntax and no duplicate keys"
+desc "Validate YAML files for syntax errors and duplicate keys"
 task :validate_yaml do
-  unless File.exist?('_config.yml')
-    abort "❌ _config.yml not found. Are you in the project root directory?"
+  puts "Validating YAML files..."
+  errors = []
+
+  Dir.glob("{_config.yml,_data/**/*.{yml,yaml}}").sort.each do |file|
+    begin
+      node = Psych.parse_file(file)
+      collect_yaml_duplicate_keys(node, file, errors)
+      YAML.safe_load_file(file)
+    rescue Psych::SyntaxError => e
+      errors << "#{file}: syntax error — #{e.message}"
+    rescue Psych::DisallowedClass => e
+      errors << "#{file}: unsafe YAML — #{e.message}"
+    rescue => e
+      errors << "#{file}: #{e.message}"
+    end
   end
-  
-  # Check for valid YAML syntax
-  begin
-    YAML.safe_load_file('_config.yml')
-  rescue => e
-    abort "❌ Invalid YAML syntax in _config.yml: #{e.message}"
-  end
-  
-  # Check for duplicate keys (YAML parser silently ignores these)
-  yaml_content = File.read('_config.yml')
-  duplicate_keys = check_duplicate_keys_in_defaults(yaml_content)
-  if duplicate_keys.any?
-    abort "❌ Duplicate keys found in _config.yml defaults: #{duplicate_keys.join(', ')}"
+
+  if errors.any?
+    puts "❌ YAML validation errors:"
+    errors.each { |e| puts "  - #{e}" }
+    abort
+  else
+    puts "✅ YAML files are valid"
   end
 end
 
 # Default task
-task default: [:validate_yaml, :build, :check, :serve]
+task default: [:build, :check, :serve]
 
 desc "Validate configuration has been updated from template defaults"
 task :check => :validate_yaml do
-  puts "Validating _config.yml configuration..."
+  puts "\n" + "=" * 60
+  puts "🔍 Validating SRCCON site configuration"
+  puts "=" * 60
   
   config = YAML.safe_load_file('_config.yml')
   
@@ -210,9 +154,13 @@ task :serve do
   sh "bundle exec jekyll serve"
 end
 
+# Common S3 sync arguments in :deploy steps
+S3_ARGS = "--delete --cache-control 'public, max-age=3600'"
+
+desc "MOSTLY used by GitHub Actions on push/merges to `main` and `staging` branches"
 namespace :deploy do
   desc "Run all pre-deployment checks"
-  task :precheck => [:validate_yaml, :check, :build, 'test:all'] do
+  task :precheck => [:check, :build, 'test:all'] do
     puts "\n✅ All pre-deployment checks passed!"
     puts "\nDeploy with:"
     puts "  rake deploy:staging          # Dry-run to staging"
@@ -221,10 +169,7 @@ namespace :deploy do
     puts "  rake deploy:production:real  # Actually deploy to production"
   end
   
-  # Common S3 sync arguments
-  S3_ARGS = "--delete --cache-control 'public, max-age=3600'"
-
-  desc "Deploy to staging (dry-run by default; mostly run by GitHub Actions)"
+  desc "Deploy to staging (dry-run by default)"
   namespace :staging do
     task :default => :dryrun
     
@@ -257,7 +202,7 @@ namespace :deploy do
     end
   end
 
-  desc "Deploy to production (dry-run by default; mostly run by GitHub Actions)"
+  desc "Deploy to production (dry-run by default)"
   namespace :production do
     task :default => :dryrun
 
@@ -289,7 +234,7 @@ namespace :deploy do
       
       puts "🚨 DEPLOYING TO PRODUCTION: #{prod_bucket}"
       print "Are you absolutely sure? (yes/N) "
-      response = STDIN.gets.chomp
+      response = $stdin.gets.chomp
       abort "Deployment cancelled" unless response == 'yes'
       
       puts "\nDeploying to production bucket: #{prod_bucket}..."
