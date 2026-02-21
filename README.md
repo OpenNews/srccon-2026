@@ -2,6 +2,18 @@
 
 This repo provides a templated foundation for creating new SRCCON event sites. By default, pages use the "simple" SRCCON template. [Check the demo site](https://site-starterkit.srccon.org) to see what's included and what it looks like.
 
+### Quick Start
+
+After creating a new repository from this template:
+
+```bash
+git clone <your-new-repo>
+cd <your-new-repo>
+bundle install          # Install Ruby dependencies
+npm install            # Install Node.js dependencies
+bundle exec rake setup # Automated setup (renames README, creates staging branch)
+```
+
 ### 🎯 2026 Major Refactoring
 
 This starterkit has been significantly enhanced in 2026 to automate and template features that previously required manual setup for each annual SRCCON event. Key improvements include:
@@ -14,6 +26,7 @@ This starterkit has been significantly enhanced in 2026 to automate and template
 - **Prior events navigation** - Footer automatically generates links to previous SRCCON years based on the current event's URL
 - **Social media metadata** - OpenGraph tags now use absolute URLs from config instead of relative paths
 - **Comprehensive testing** - Automated validation for templates, layouts, configuration, accessibility, security, and performance
+- **Modern development tooling** - StandardRB + Prettier for code formatting, automated setup task, improved YAML validation with Psych AST
 
 **Examples of What's Automated:**
 - Event name, dates and location appear consistently across all Markdown pages
@@ -54,7 +67,8 @@ This means **less manual find-and-replace work** when setting up a new SRCCON si
 
 **First-time setup:**
 ```bash
-bundle install                    # Install dependencies
+bundle install                    # Install Ruby dependencies
+npm install                       # Install Node.js dependencies (Prettier)
 bundle exec rake git:setup_hooks  # Enable pre-commit validation
 ```
 
@@ -63,6 +77,34 @@ bundle exec rake git:setup_hooks  # Enable pre-commit validation
 View at [http://localhost:4000](http://localhost:4000)
 
 The pre-commit hook will automatically validate `_config.yml` before commits to catch errors early. To bypass for a single commit: `git commit --no-verify`
+
+## Code Formatting & Linting
+
+This repository uses **StandardRB** (Ruby) and **Prettier** (HTML, CSS, JS, YAML, Markdown) for consistent code formatting.
+
+```bash
+# Check all code formatting
+bundle exec rake lint
+
+# Auto-fix all formatting issues
+bundle exec rake format
+
+# Check Ruby code only
+bundle exec rake format:ruby
+
+# Check non-Ruby files only
+bundle exec rake format:prettier
+
+# Or use npm directly
+npm run lint             # Check all files
+npm run format           # Auto-fix all files
+npm run format:check     # Check without fixing
+```
+
+**Editor Integration:** The repository includes `.vscode/settings.json` for automatic formatting on save in VSCode and VSCode-based editors (Cursor, Antigravity, etc.). Install the following extensions:
+- Prettier - Code formatter (`esbenp.prettier-vscode`)
+- StandardRB (`testdouble.vscode-standard-ruby`)
+- Red Hat YAML (`redhat.vscode-yaml`) - for YAML validation
 
 ## Pre-Launch Checklist
 
