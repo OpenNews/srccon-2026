@@ -10,9 +10,7 @@ The following sessions have been confirmed so far for {{ page.event_name }}. Tha
 
 We'll publish the complete schedule with session dates and times soon.
 
-{% comment %}<!-- remove to add -->
-**If you're figuring out travel plans:** {{ page.event_name }} will begin around 9am on Thursday, MMM DD, and close by 6pm Friday, MMM DD. Most participants arrive Wednesday afternoon and head home Saturday morning.
-{% endcomment %}<!-- remove to add -->
+**If you're figuring out travel plans:** {{ page.event_name }} will begin around 9am on the first day and closes around 6pm on the second day. Most participants arrive in the afternoon the day before SRCCON starts and head home the morning after it wraps.
 
 ### Sessions {#sessions}
 
