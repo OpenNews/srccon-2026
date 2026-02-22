@@ -1,195 +1,161 @@
-require 'jekyll'
-require 'yaml'
-require 'fileutils'
+require "jekyll"
+require "yaml"
+require "psych"
+require "fileutils"
 
 # Load test:* tasks from separate file
-Dir.glob('tasks/*.rake').each { |r| load r }
+Dir.glob("tasks/*.rake").each { |r| load r }
+
+# Recursively walk a Psych AST node and collect duplicate mapping keys
+def collect_yaml_duplicate_keys(node, file, errors = [])
+  return errors unless node.respond_to?(:children) && node.children
+
+  if node.is_a?(Psych::Nodes::Mapping)
+    keys = node.children.each_slice(2).map { |k, _| k.value if k.respond_to?(:value) }.compact
+    keys.group_by(&:itself).each do |key, hits|
+      errors << "#{file}: duplicate key '#{key}'" if hits.size > 1
+    end
+  end
+
+  node.children.each { |child| collect_yaml_duplicate_keys(child, file, errors) }
+  errors
+end
+
+desc "Validate YAML files for syntax errors and duplicate keys"
+task :validate_yaml do
+  puts "Validating YAML files..."
+  errors = []
+
+  Dir.glob("{_config.yml,_data/**/*.{yml,yaml}}").sort.each do |file|
+    begin
+      node = Psych.parse_file(file)
+      collect_yaml_duplicate_keys(node, file, errors)
+      YAML.safe_load_file(file)
+    rescue Psych::SyntaxError => e
+      errors << "#{file}: syntax error — #{e.message}"
+    rescue Psych::DisallowedClass => e
+      errors << "#{file}: unsafe YAML — #{e.message}"
+    rescue => e
+      errors << "#{file}: #{e.message}"
+    end
+  end
+
+  if errors.any?
+    puts "❌ YAML validation errors:"
+    errors.each { |e| puts "  - #{e}" }
+    abort
+  else
+    puts "✅ YAML files are valid"
+  end
+end
 
 # Load deployment vars from _config.yml
 def deployment_config
   return @deployment_config if @deployment_config
-  
-  unless File.exist?('_config.yml')
+
+  unless File.exist?("_config.yml")
     abort "❌ _config.yml not found. Are you in the project root directory?"
   end
-  
+
   begin
-    config = YAML.safe_load_file('_config.yml')
-    @deployment_config = config['deployment'] || {}
+    config = YAML.safe_load_file("_config.yml")
+    @deployment_config = config["deployment"] || {}
   rescue => e
     abort "❌ Error loading _config.yml: #{e.message}"
   end
 end
 
-# Helper: check for duplicate keys within each scope of the defaults section
-def check_duplicate_keys_in_defaults(yaml_content)
-  in_defaults = false
-  in_scope = false
-  in_values = false
-  values_indent = nil
-  scope_keys = []
-  scope_path = nil
-  all_duplicate_keys = []
-  
-  yaml_content.each_line do |line|
-    # Track when we enter/exit the defaults section
-    if line =~ /^defaults:/
-      in_defaults = true
-      next
-    elsif in_defaults && line =~ /^[a-z_]/
-      break # exited defaults section
-    end
-    
-    next unless in_defaults
-    
-    # Look for new scope entry
-    if line =~ /^\s+-\s+scope:/ || line =~ /^\s+scope:/
-      # Check previous scope for duplicates before starting new one
-      if scope_keys.any?
-        duplicate_keys = scope_keys.select { |k| scope_keys.count(k) > 1 }.uniq
-        if duplicate_keys.any?
-          scope_label = scope_path.nil? || scope_path.empty? ? "empty path scope" : "scope '#{scope_path}'"
-          all_duplicate_keys.concat(duplicate_keys.map { |k| "#{k} (in #{scope_label})" })
-        end
-      end
-      
-      in_scope = true
-      in_values = false
-      scope_keys = []
-      scope_path = nil
-    end
-    
-    # Capture the path for this scope
-    if in_scope && line =~ /^\s+path:\s*["']?([^"']*)["']?\s*$/
-      scope_path = $1
-    end
-    
-    # Look for values section within scope
-    if in_scope && line =~ /^(\s+)values:\s*$/
-      in_values = true
-      values_indent = $1.length + 2 # keys should be indented more than "values:"
-      next
-    end
-    
-    # Extract keys from values section
-    if in_values
-      current_indent = line[/^(\s*)/].length
-      
-      # Exit values section if we dedent
-      if line.strip != '' && current_indent < values_indent
-        in_values = false
-        in_scope = false
-        next
-      end
-      
-      # Extract key name (word characters followed by colon)
-      if line =~ /^\s{#{values_indent}}(\w+):/
-        scope_keys << $1
-      end
-    end
-  end
-  
-  # Check the last scope for duplicates
-  if scope_keys.any?
-    duplicate_keys = scope_keys.select { |k| scope_keys.count(k) > 1 }.uniq
-    if duplicate_keys.any?
-      scope_label = scope_path.nil? || scope_path.empty? ? "empty path scope" : "scope '#{scope_path}'"
-      all_duplicate_keys.concat(duplicate_keys.map { |k| "#{k} (in #{scope_label})" })
-    end
-  end
-  
-  all_duplicate_keys
-end
-
-# Validate YAML syntax and structure before any tasks that depend on config
-desc "Validate _config.yml has valid YAML syntax and no duplicate keys"
-task :validate_yaml do
-  unless File.exist?('_config.yml')
-    abort "❌ _config.yml not found. Are you in the project root directory?"
-  end
-  
-  # Check for valid YAML syntax
-  begin
-    YAML.safe_load_file('_config.yml')
-  rescue => e
-    abort "❌ Invalid YAML syntax in _config.yml: #{e.message}"
-  end
-  
-  # Check for duplicate keys (YAML parser silently ignores these)
-  yaml_content = File.read('_config.yml')
-  duplicate_keys = check_duplicate_keys_in_defaults(yaml_content)
-  if duplicate_keys.any?
-    abort "❌ Duplicate keys found in _config.yml defaults: #{duplicate_keys.join(', ')}"
-  end
-end
-
 # Default task
-task default: [:validate_yaml, :build, :check, :serve]
+task default: [:build, :check, :serve]
 
 desc "Validate configuration has been updated from template defaults"
-task :check => :validate_yaml do
-  puts "Validating _config.yml configuration..."
-  
-  config = YAML.safe_load_file('_config.yml')
-  
-  unless config['defaults'].is_a?(Array)
-    abort "❌ _config.yml is missing 'defaults' array"
+task check: :validate_yaml do
+  puts "\n" + "=" * 60
+  puts "🔍 Validating SRCCON site configuration"
+  puts "=" * 60
+
+  unless File.exist?("_config.yml")
+    abort "\n❌ _config.yml not found. Are you in the project root directory?"
   end
-  
-  default_scope = config['defaults'].find { |d| d['scope'] && d['scope']['path'] == '' }
-  unless default_scope && default_scope['values']
-    abort "❌ _config.yml is missing default scope with empty path"
+
+  begin
+    config = YAML.safe_load_file("_config.yml")
+  rescue => e
+    abort "\n❌ Error parsing _config.yml: #{e.message}"
   end
-  
-  defaults = default_scope['values']
-  
+
+  unless config["defaults"].is_a?(Array)
+    abort "\n❌ _config.yml is missing 'defaults' array"
+  end
+
+  default_scope = config["defaults"].find { |d| d["scope"] && d["scope"]["path"] == "" }
+  unless default_scope && default_scope["values"]
+    abort "\n❌ _config.yml is missing default scope with empty path"
+  end
+
+  defaults = default_scope["values"]
+  deployments = config["deployment"]
+
   errors = []
   warnings = []
-  
+
+  # Check for required deployment configuration
+  errors << "AWS buckets are still set to demo site in deployment config" if deployments["bucket"].to_s.include?("site-starterkit") || deployments["staging_bucket"].to_s.include?("site-starterkit")
+  if deployments["cloudfront_distribution_id"].to_s.include?("E1234ABCD5678")
+    errors << "AWS cloudfront_distribution_id is still set to demo site in deployment config, set to site's prd distribution ID (see README)"
+  end
+
   # Check for placeholder values that need updating
-  errors << "root_url is still set to 'https://2025.srccon.org'" if defaults['root_url'] == 'https://2025.srccon.org'
-  errors << "event_name is still set to 'SRCCON YYYY'" if defaults['event_name'] == 'SRCCON YYYY'
-  errors << "event_date is still 'DATES' placeholder" if defaults['event_date'] == 'DATES'
-  errors << "event_place is still 'PLACE' placeholder" if defaults['event_place'] == 'PLACE'
-  errors << "form_link is still set to the demo Airtable URL" if defaults['form_link'].to_s.include?('TK')
-  errors << "session_deadline is still set to April Fools placeholder" if defaults['session_deadline'].to_s.include?('April 1')
-  errors << "session_confirm is still set to Tax Day placeholder" if defaults['session_confirm'].to_s.include?('April 15')
-  
-  cname_content = File.read('CNAME').strip
-  errors << "CNAME file still has demo site URL, update with your event." if cname_content.include?('2025.srccon.org')
-  
-  warnings << "event_timezone_offset is empty (needed for live sessions feature)" if defaults['event_timezone_offset'].nil? || defaults['event_timezone_offset'].empty?
-  warnings << "google_analytics_id is empty (no tracking will be enabled)" if defaults['google_analytics_id'].nil? || defaults['google_analytics_id'].empty?
-  
+  placeholder_checks = [
+    ["root_url", "https://site-starterkit.srccon.org", "root_url is still set to 'https://site-starterkit.srccon.org'"],
+    ["event_name", "SRCCON YYYY", "event_name is still set to 'SRCCON YYYY'"],
+    ["event_date", "DATES", "event_date is still 'DATES' placeholder"],
+    ["event_place", "PLACE", "event_place is still 'PLACE' placeholder"],
+    ["form_link", "pagJcROoTohbsBLFw", "form_link is still set to the demo Airtable URL", :include?],
+    ["session_deadline", "April 1", "session_deadline is still set to April Fools placeholder", :include?],
+    ["session_confirm", "April 15", "session_confirm is still set to Tax Day placeholder", :include?]
+  ]
+
+  placeholder_checks.each do |key, value, message, method = :==|
+    check_value = defaults[key].to_s
+    errors << message if check_value.send(method, value)
+  end
+
+  cname_content = File.read("CNAME").strip
+  errors << "CNAME file still set to demo site URL" if cname_content.include?("site-starterkit")
+
+  warnings << "event_timezone_offset is empty (needed for live sessions feature)" if defaults["event_timezone_offset"].nil? || defaults["event_timezone_offset"].empty?
+  warnings << "google_analytics_id is empty (no tracking will be enabled)" if defaults["google_analytics_id"].nil? || defaults["google_analytics_id"].empty?
+
   # verify prices are in $XXX format
   [
-    defaults['price_base'], 
-    defaults['price_med'], 
-    defaults['price_full'], 
-    defaults['price_stipend']
+    defaults["price_base"],
+    defaults["price_med"],
+    defaults["price_full"],
+    defaults["price_stipend"]
   ].each do |price|
     cost = price.to_s.gsub(/^\$(\d{3})$/) { |m| $1 } # extract digits
-    warnings << "Ticket price #{price} has no dollar-sign prefix" unless price.to_s.start_with?('$')
+    warnings << "Ticket price #{price} has no dollar-sign prefix" unless price.to_s.start_with?("$")
     warnings << "Ticket price #{price} is not three digits" if cost && (cost.to_i < 100 || cost.to_i > 999)
   end
-    
+
   if errors.any?
     puts "\n❌ Configuration Errors (MUST FIX):"
     errors.each { |e| puts "  - #{e}" }
   end
-  
+
   if warnings.any?
     puts "\n⚠️  Configuration Warnings:"
     warnings.each { |w| puts "  - #{w}" }
   end
-  
+
   if errors.empty?
-    puts "\n✅ Configuration looks good!"
+    puts "✅ Configuration looks good!"
   end
 end
 
 desc "Build the Jekyll site"
-task :build => :validate_yaml do
+task build: :validate_yaml do
   puts "Building Jekyll site..."
   options = {
     "source" => ".",
@@ -201,7 +167,7 @@ end
 desc "Clean the build directory"
 task :clean do
   puts "Cleaning _site directory..."
-  FileUtils.rm_rf(['_site', '.jekyll-cache', '.jekyll-metadata'])
+  FileUtils.rm_rf(["_site", ".jekyll-cache", ".jekyll-metadata"])
 end
 
 desc "Build and serve the site locally"
@@ -210,9 +176,13 @@ task :serve do
   sh "bundle exec jekyll serve"
 end
 
+# Common S3 sync arguments in :deploy steps
+S3_ARGS = "--delete --cache-control 'public, max-age=3600'"
+
+desc "MOSTLY used by GitHub Actions on push/merges to `main` and `staging` branches"
 namespace :deploy do
   desc "Run all pre-deployment checks"
-  task :precheck => [:validate_yaml, :check, :build, 'test:all'] do
+  task precheck: [:check, :build, "test:all"] do
     puts "\n✅ All pre-deployment checks passed!"
     puts "\nDeploy with:"
     puts "  rake deploy:staging          # Dry-run to staging"
@@ -220,81 +190,78 @@ namespace :deploy do
     puts "  rake deploy:production       # Dry-run to production"
     puts "  rake deploy:production:real  # Actually deploy to production"
   end
-  
-  # Common S3 sync arguments
-  S3_ARGS = "--delete --cache-control 'public, max-age=3600'"
 
-  desc "Deploy to staging (dry-run by default; mostly run by GitHub Actions)"
+  desc "Deploy to staging (dry-run by default)"
   namespace :staging do
-    task :default => :dryrun
-    
+    task default: :dryrun
+
     desc "Dry-run staging deploy"
-    task :dryrun => :build do
+    task dryrun: :build do
       config = deployment_config
-      staging_bucket = config['staging_bucket'] || "staging.#{config['bucket']}"
+      staging_bucket = config["staging_bucket"] || "staging.#{config["bucket"]}"
       abort "❌ Staging bucket not configured in _config.yml deployment section" unless staging_bucket
-      
+
       puts "[DRY RUN] Deploying to staging bucket: #{staging_bucket}..."
       sh "aws s3 sync _site/ s3://#{staging_bucket} --dryrun #{S3_ARGS}"
       puts "\n✅ Dry-run complete. To deploy for real, run: rake deploy:staging:real"
     end
 
     desc "Real staging deploy (with confirmation)"
-    task :real => :precheck do
+    task real: :precheck do
       config = deployment_config
-      staging_bucket = config['staging_bucket'] || "staging.#{config['bucket']}"
+      staging_bucket = config["staging_bucket"] || "staging.#{config["bucket"]}"
       abort "❌ Staging bucket not configured in _config.yml deployment section" unless staging_bucket
-      
+
       puts "⚠️  Deploying to STAGING: #{staging_bucket}"
       print "Continue? (y/N) "
 
-      response = STDIN.gets.chomp
-      abort "Deployment cancelled" unless response.downcase == 'y'
-      
+      response = $stdin.gets.chomp
+      abort "Deployment cancelled" unless response.downcase == "y"
+
       puts "Deploying to staging bucket: #{staging_bucket}..."
       sh "aws s3 sync _site/ s3://#{staging_bucket} #{S3_ARGS}"
       puts "\n✅ Successfully deployed to staging!"
     end
   end
 
-  desc "Deploy to production (dry-run by default; mostly run by GitHub Actions)"
+  desc "Deploy to production (dry-run by default)"
   namespace :production do
-    task :default => :dryrun
+    task default: :dryrun
 
     desc "Dry-run production deploy"
-    task :dryrun => :build do
+    task dryrun: :build do
       config = deployment_config
-      prod_bucket = config['bucket']
-      cloudfront_dist = config['cloudfront_distribution_id']
+      prod_bucket = config["bucket"]
+      cloudfront_dist = config["cloudfront_distribution_id"]
       abort "❌ Production bucket not configured in _config.yml deployment section" unless prod_bucket
-      
+
       puts "[DRY RUN] Deploying to production bucket: #{prod_bucket}..."
       sh "aws s3 sync _site/ s3://#{prod_bucket} --dryrun #{S3_ARGS}"
-      
+
       if cloudfront_dist && !cloudfront_dist.empty?
         puts "\n[DRY RUN] Would invalidate CloudFront: #{cloudfront_dist}"
       else
         puts "\n⚠️  No CloudFront distribution configured (cache won't be invalidated)"
       end
-      
+
       puts "\n✅ Dry-run complete. To deploy for real, run: rake deploy:production:real"
     end
 
     desc "Real production deploy (with confirmation)"
-    task :real => :precheck do
+    task real: :precheck do
       config = deployment_config
-      prod_bucket = config['bucket']
-      cloudfront_dist = config['cloudfront_distribution_id']
+      prod_bucket = config["bucket"]
+      cloudfront_dist = config["cloudfront_distribution_id"]
       abort "❌ Production bucket not configured in _config.yml deployment section" unless prod_bucket
-      
+
       puts "🚨 DEPLOYING TO PRODUCTION: #{prod_bucket}"
       print "Are you absolutely sure? (yes/N) "
-      response = STDIN.gets.chomp
-      abort "Deployment cancelled" unless response == 'yes'
-      
+      response = $stdin.gets.chomp
+      abort "Deployment cancelled" unless response == "yes"
+
       puts "\nDeploying to production bucket: #{prod_bucket}..."
       sh "aws s3 sync _site/ s3://#{prod_bucket} #{S3_ARGS}"
-      
+
       if cloudfront_dist && !cloudfront_dist.empty?
         puts "\nInvalidating CloudFront distribution: #{cloudfront_dist}..."
         sh "aws cloudfront create-invalidation --distribution-id #{cloudfront_dist} --paths '/*'"
@@ -302,19 +269,8 @@ namespace :deploy do
       else
         puts "\n⚠️  Skipping CloudFront invalidation (not configured)"
       end
-      
+
       puts "\n🎉 Successfully deployed to production!"
     end
-  end
-end
-
-namespace :git do
-  desc "Configure Git to use pre-commit validation hooks"
-  task :setup_hooks do
-    sh "git config core.hooksPath .githooks"
-    puts "✅ Git hooks configured!"
-    puts "   Pre-commit validation will run automatically before each commit."
-    puts "   Hooks are tracked in .githooks/ directory."
-    puts "   To bypass a single commit: git commit --no-verify"
   end
 end
