@@ -4,7 +4,7 @@ kramdown:
   smart_quotes: lsquo,rsquo,ldquo,rdquo
 plugins:
   - jekyll-redirect-from
-exclude: ['*.yml', 'Rakefile', 'README.md', 'TEMPLATE_SETUP.md', 'LICENSE']
+exclude: ["*.yml", "Rakefile", "README.md", "TEMPLATE_SETUP.md", "LICENSE"]
 collections:
   transcripts:
     output: true
@@ -60,7 +60,7 @@ defaults:
       cta_button_link: /participation/form/
       # form_link: set this value to the URL for the ticket purchase or registration form
       form_link: https://airtable.com/embed/apph4nQHGI9JBTCHe/pagGXNa51i21tMFaJ/form
-      
+
       # ⚠️ IMPORTANT "GATES" in page logic
       # schedule_live: set this value to true when the program should be exposed on the site
       schedule_live: false
@@ -70,7 +70,7 @@ defaults:
       session_deadline: March 8 at 11:59 p.m. CT
       # session_confirm: date attendees will be notified
       session_confirm: March 25
-      
+
       # price_base: set this value to the base ticket price
       price_base: $295
       # price_med: set this value to the medium-sized newsroom ticket price
