@@ -31,7 +31,7 @@ If you're looking for lodging and other logistics info, [you'll find it right he
 - [What do people expect me to do in the sessions?](#participation)
 - [Where is the conference schedule?](#schedule)
 - [How will I find the sessions?](#finding-sessions)
-  {% comment %}<!-- remove to add -->\* [Who are the people with the futuristic keyboards?](#stenographer){% endcomment %}<!-- remove to add -->
+  {% comment %}<!-- remove to add -->- [Who are the people with the futuristic keyboards?](#stenographer){% endcomment %}<!-- remove to add -->
 - [What are the meals like?](#meals)
 - [What are the non-caffeinated, non-alcoholic drink options like?](#drinks)
 - [What is this Thursday evening thing all about?](#evening)
