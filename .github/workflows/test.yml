@@ -48,7 +48,7 @@ jobs:
         env:
           AWS_ROLE_ARN: ${{ secrets.AWS_ROLE_ARN }}
         run: |
-          STAGING_BUCKET=$(ruby -ryaml -e "config = YAML.load_file('_config.yml'); puts config['deployment']['staging_bucket']")
+          STAGING_BUCKET=$(ruby -ryaml -e "config = YAML.safe_load_file('_config.yml', permitted_classes: [], aliases: true); puts config['deployment']['staging_bucket']")
           echo "staging_bucket=$STAGING_BUCKET" >> $GITHUB_OUTPUT
 
       - name: Configure AWS credentials
