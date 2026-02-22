@@ -58,7 +58,7 @@ def deployment_config
   end
 
   begin
-    config = YAML.load_file("_config.yml")
+    config = YAML.safe_load_file("_config.yml")
     @deployment_config = config["deployment"] || {}
   rescue => e
     abort "❌ Error loading _config.yml: #{e.message}"
