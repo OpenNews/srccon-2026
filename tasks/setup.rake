@@ -6,7 +6,7 @@ task :setup do
   puts "\nSetting up new SRCCON site from template..."
 
   # Check if this is the template repo itself
-  config = YAML.load_file("_config.yml")
+  config = YAML.safe_load_file("_config.yml")
   defaults_values = config.dig("defaults", 0, "values") || {}
   root_url = defaults_values["root_url"]
 

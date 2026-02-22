@@ -267,7 +267,7 @@ namespace :test do
   #     errors = []
   #     warnings = []
 
-  #     config = YAML.load_file('_config.yml')
+  #     config = YAML.safe_load_file('_config.yml')
 
   #     # Get all layout references from config
   #     layout_refs = []
