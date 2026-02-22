@@ -19,12 +19,14 @@ Our deadline for proposing sessions has already passed, but we'll keep our [call
 ### Key dates {#dates}
 
 {% if page.session_deadline_passed == false %}
-* **[NOW](/participation/form)**: Call for participation is open!
-{% endif %}
-- **{{ page.session_deadline }}**: Deadline to submit session proposals and stipend applications
-- **Through {{ page.session_confirm }}**: We'll send out notifications about session proposals and stipend applications
-- **After {{ page.session_confirm }}**: We'll review more participation forms for attendees only, on a rolling basis until the conference
-- **{{ page.event_date }}**: {{ page.event_name }} in {{ page.event_place }}!
+
+- **[NOW](/participation/form)**: Call for participation is open!
+  {% endif %}
+
+* **{{ page.session_deadline }}**: Deadline to submit session proposals and stipend applications
+* **Through {{ page.session_confirm }}**: We'll send out notifications about session proposals and stipend applications
+* **After {{ page.session_confirm }}**: We'll review more participation forms for attendees only, on a rolling basis until the conference
+* **{{ page.event_date }}**: {{ page.event_name }} in {{ page.event_place }}!
 
 Curious about how it all works? Learn more about [being a participant at SRCCON](/attendees) and [our call for participation form](/participation/form). There won't be a separate ticket lottery or sale date, so if you want to come to {{ page.event_name }}, our call for participation is how to let us know!
 
