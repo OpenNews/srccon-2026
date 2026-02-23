@@ -38,6 +38,4 @@ Check for outdated Ruby gems.
 
 ### `setup.rake` - Initial Site Setup
 
-One-time setup task for new SRCCON sites created from the template.
-
-- `rake setup` - Initialize a new SRCCON site from template (cleans up template-specific docs)
+DELETED here, manual setup instead

@@ -129,12 +129,6 @@ namespace :test do
   task :placeholders do
     puts "testing for placeholder content..."
 
-    # Detect if this repo is srccon-site-starterkit
-    if File.exist?("CNAME") && File.read("CNAME").include?("site-starterkit.srccon.org")
-      puts "✅ Placeholder content check not applicable to the starter kit repo."
-      next
-    end
-
     placeholders = []
 
     Dir
