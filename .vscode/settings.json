@@ -43,6 +43,7 @@
   // StandardRB configuration
   "rubyLsp.formatter": "standard",
   "rubyLsp.linters": ["standard"],
+  "standard.useWorkspaceRubyInterpreter": true,
 
   // File associations for Jekyll
   "files.associations": {

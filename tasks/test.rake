@@ -15,18 +15,20 @@ namespace :test do
     original_verbose = $VERBOSE
     $VERBOSE = nil
 
-    HTMLProofer.check_directory(
-      "./_site",
-      {
-        disable_external: true,
-        enforce_https: false,
-        ignore_urls: [%r{^http://(localhost|127\.0\.0\.1)}],
-        allow_hash_href: true,
-        log_level: :error,
-      },
-    ).run
-
-    $VERBOSE = original_verbose
+    begin
+      HTMLProofer.check_directory(
+        "./_site",
+        {
+          disable_external: true,
+          enforce_https: false,
+          ignore_urls: [%r{^http://(localhost|127\.0\.0\.1)}],
+          allow_hash_href: true,
+          log_level: :error,
+        },
+      ).run
+    ensure
+      $VERBOSE = original_verbose
+    end
   end
 
   desc "Check common Liquid template issues"
@@ -126,12 +128,6 @@ namespace :test do
   desc "Check for placeholder content in built site"
   task :placeholders do
     puts "testing for placeholder content..."
-
-    # Detect if this repo is srccon-site-starterkit
-    if File.exist?("CNAME") && File.read("CNAME").include?("site-starterkit.srccon.org")
-      puts "✅ Placeholder content check not applicable to the starter kit repo."
-      next
-    end
 
     placeholders = []
 
