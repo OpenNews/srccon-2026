@@ -2,6 +2,11 @@
 
 This is the website for SRCCON [YEAR|name], built with Jekyll and deployed via GitHub Actions to AWS S3.
 
+* [![S3 Deploy: main](https://github.com/OpenNews/srccon-2026/actions/workflows/deploy.yml/badge.svg?branch=main)](https://github.com/OpenNews/srccon-2026/actions/workflows/deploy.yml)
+* [![S3 Deploy: staging](https://github.com/OpenNews/srccon-2026/actions/workflows/deploy.yml/badge.svg?branch=staging)](https://github.com/OpenNews/srccon-2026/actions/workflows/deploy.yml)
+* [![Test Build](https://github.com/OpenNews/srccon-2026/actions/workflows/test.yml/badge.svg)](https://github.com/OpenNews/srccon-2026/actions/workflows/test.yml)
+* [![Weekly Health Check](https://github.com/OpenNews/srccon-2026/actions/workflows/health-check.yml/badge.svg)](https://github.com/OpenNews/srccon-2026/actions/workflows/health-check.yml)
+
 ## Table of Contents
 
 - [Quick Start](#quick-start)
