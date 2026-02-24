@@ -70,10 +70,6 @@ task default: [:build, :check, :serve]
 
 desc "Validate configuration has been updated from template defaults"
 task check: :validate_yaml do
-  puts "\n" + "=" * 60
-  puts "🔍 Validating SRCCON site configuration"
-  puts "=" * 60
-
   unless File.exist?("_config.yml")
     abort "\n❌ _config.yml not found. Are you in the project root directory?"
   end
