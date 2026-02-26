@@ -28,6 +28,14 @@ Comprehensive testing suite for the built site.
 - `rake test:performance` - Check for performance issues
 - `rake test:sessions` - Validate session page structure
 
+### `review.rake` - External Link Validation
+
+Validate external/public URLs in the built site (slower, requires network access).
+
+- `rake review:external_links` - Check all external links in the built site for validity
+
+**Note:** This task requires the site to be built first (`rake build`). It performs actual HTTP requests to external URLs, so it's slower than internal tests and requires network access.
+
 ### `outdated.rake` - Dependency Updates
 
 Check for outdated Ruby gems.

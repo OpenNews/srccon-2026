@@ -23,7 +23,6 @@ end
 
 desc "Validate YAML files for syntax errors and duplicate keys"
 task :validate_yaml do
-  puts "Validating YAML files..."
   errors = []
 
   Dir.glob("{_config.yml,_data/**/*.{yml,yaml}}").sort.each do |file|
@@ -149,12 +148,17 @@ end
 
 desc "Build the Jekyll site"
 task build: :validate_yaml do
-  puts "Building Jekyll site..."
   options = {
     "source" => ".",
-    "destination" => "./_site"
+    "destination" => "./_site",
+    "config" => "_config.yml",
+    "quiet" => true
   }
-  Jekyll::Site.new(Jekyll.configuration(options)).process
+  begin
+    Jekyll::Site.new(Jekyll.configuration(options)).process
+  rescue => e
+    abort "❌ Jekyll build failed: #{e.message}"
+  end
 end
 
 desc "Clean the build directory"

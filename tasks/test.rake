@@ -4,8 +4,6 @@ require "yaml"
 namespace :test do
   desc "Check the built site with html-proofer"
   task :html_proofer do
-    puts "Testing site with html-proofer..."
-
     # if no _site/, remind user to run bundle exec rake build first
     unless Dir.exist?("./_site")
       abort "❌ No _site/ directory found. Please run 'bundle exec rake build' first."
@@ -20,7 +18,7 @@ namespace :test do
         "./_site",
         {
           disable_external: true,
-          enforce_https: false,
+          enforce_https: true,
           ignore_urls: [%r{^http://(localhost|127\.0\.0\.1)}],
           allow_hash_href: true,
           log_level: :error,
@@ -33,7 +31,6 @@ namespace :test do
 
   desc "Check common Liquid template issues"
   task :templates do
-    puts "testing templates..."
     errors = []
     warnings = []
 
@@ -92,7 +89,6 @@ namespace :test do
 
   desc "Check page-configuration props (section/permalink/title) in markdown"
   task :page_config do
-    puts "testing page-configuration properties..."
     errors = []
     warnings = []
 
@@ -127,8 +123,6 @@ namespace :test do
 
   desc "Check for placeholder content in built site"
   task :placeholders do
-    puts "testing for placeholder content..."
-
     placeholders = []
 
     Dir
@@ -167,7 +161,6 @@ namespace :test do
 
   desc "test for common accessibility issues"
   task :a11y do
-    puts "testing accessibility..."
     issues = []
 
     Dir
@@ -216,7 +209,6 @@ namespace :test do
 
   desc "test for performance issues"
   task :performance do
-    puts "testing performance..."
     warnings = []
 
     Dir
@@ -340,7 +332,6 @@ namespace :test do
 
   desc "Validate per-Session page structure"
   task :sessions do
-    puts "testing session page structure..."
     errors = []
     warnings = []
 
