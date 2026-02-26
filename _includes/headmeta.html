@@ -26,7 +26,13 @@
   content="{{ page.description | markdownify | strip_html | strip_newlines }}"
 />
 <meta property="og:image" content="{{ page.root_url }}/media/img/srccon_share_logo.png" />
+<meta property="og:image:width" content="512" />
+<meta property="og:image:height" content="330" />
+<meta property="og:image:alt" content="SRCCON logo" />
 
+<!-- Performance: TypeKit optimization -->
+<link rel="dns-prefetch" href="https://use.typekit.net" />
+<link rel="preconnect" href="https://use.typekit.net" crossorigin />
 <link rel="stylesheet" href="https://use.typekit.net/npu3izb.css" />
 <link rel="stylesheet" href="/media/css/style.css" />
 <link rel="shortcut icon" href="/media/img/favicon.ico" />

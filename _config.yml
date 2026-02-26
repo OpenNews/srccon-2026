@@ -4,7 +4,17 @@ kramdown:
   smart_quotes: lsquo,rsquo,ldquo,rdquo
 plugins:
   - jekyll-redirect-from
-exclude: ["*.yml", "Rakefile", "README.md", "TEMPLATE_SETUP.md", "LICENSE"]
+exclude:
+  [
+    "*.yml",
+    "LICENSE",
+    "Rakefile",
+    "README.md",
+    "TEMPLATE_SETUP.md",
+    "TROUBLESHOOTING.md",
+    "tasks/*",
+    "*.json",
+  ]
 collections:
   transcripts:
     output: true

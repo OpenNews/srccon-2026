@@ -66,7 +66,7 @@ How you use your time is completely up to you. While you won't need a script lik
 
 #### Will my session be recorded? {#recording}
 
-We don't record audio or video of sessions at SRCCON. We do work with [White Coat Captioning](http://www.whitecoatcaptioning.com/) to provide transcription, and this year we'll be able to have live transcription in one session during each block on the schedule.
+We don't record audio or video of sessions at SRCCON. We do work with [White Coat Captioning](https://www.whitecoatcaptioning.com/) to provide transcription, and this year we'll be able to have live transcription in one session during each block on the schedule.
 
 We'll let you know in advance if there will be a transcriptionist in your room. If there is, you can always ask participants to say "off the record" if they'd like the transcriptionist to pause their work. If you'd prefer your session to be off the record entirely, that's not a problem—we'll make sure your session isn't transcribed at all.
 
@@ -111,7 +111,7 @@ We’re big fans of what the facilitation experts at [AORTA](https://aorta.coop/
 - Observe → Feel → Think
   - It helps to build up slowly before you ask for big thoughts. People who are just learning can be hesitant to share, and might not have fully developed opinions yet! This framework can help them get there. For example: “What examples of this have you seen?” can lead to “How would you describe the biggest problem here?” can lead to “What do you think we should do about it?”
 
-This [“making meetings awesome for everyone” guide from Aorta](http://arts-campout-2015.sites.olt.ubc.ca/files/2019/02/AORTA_Facilitation-Resource-Sheet-JUNE2017.pdf) is full of more great tips on leading conversations.
+This [“making meetings awesome for everyone” guide from Aorta](https://arts-campout-2015.sites.olt.ubc.ca/files/2019/02/AORTA_Facilitation-Resource-Sheet-JUNE2017.pdf) is full of more great tips on leading conversations.
 
 **You can also ask for help from the room.** Leading a group of creative people toward a common goal can be hard, especially while you're juggling time, information, and conversations. A cofacilitator can help lighten the load, and keeps each of you from having to be “on” the whole time. But also don’t be afraid to ask an enthusiastic attendee to help keep time, take notes, or watch for people with something to say.
 
@@ -132,7 +132,7 @@ In your sessions and outside them, the SRCCON staff will fully support you in ma
 #### Facilitation tips & ideas {#tips}
 
 - [Behind the decisions that help make SRCCON, and your sessions, more humane](https://opennews.org/blog/srccon-human-stuff/)
-- [Our favorite facilitation guide from AORTA Coop](https://aorta.coop/portfolio_page/facilitation-in-motion/)
+- [Our favorite facilitation guide from AORTA Coop](https://web.archive.org/web/20190814120436/https://aorta.coop/portfolio_page/facilitation-in-motion/)
 - [Tips from our friends at Aspiration Tech about running a breakout session](https://facilitation.aspirationtech.org/index.php?title=Facilitation:Break-Outs)
 - [General facilitation tips from Aspiration Tech](https://facilitation.aspirationtech.org/index.php?title=Facilitation:Facilitator_Guidelines)
 
