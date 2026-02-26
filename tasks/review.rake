@@ -1,5 +1,4 @@
 require "html-proofer"
-require "yaml"
 
 namespace :review do
   desc "Check external/public URLs in the built site (slower, requires network access)"
@@ -23,7 +22,7 @@ namespace :review do
             "http://localhost",
             "http://127.0.0.1",
             "https://use.typekit.net",
-            "https://opennews.us5.list-manage.com/"
+            %r{\Ahttps://opennews\.us5\.list-manage\.com/}
           ],
           allow_hash_href: false,
           check_external_hash: false, # Skip hash validation
