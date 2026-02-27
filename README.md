@@ -1,6 +1,6 @@
-# SRCCON [YEAR|name] Website
+# SRCCON 2026 Website
 
-This is the website for SRCCON [YEAR|name], built with Jekyll and deployed via GitHub Actions to AWS S3.
+This is the website for SRCCON 2026, built with Jekyll and deployed via GitHub Actions to AWS S3.
 
 | Branch/Check | Status                                                                                                                                                                                       |
 | ------------ | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
