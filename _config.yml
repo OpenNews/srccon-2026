@@ -77,7 +77,7 @@ defaults:
       # session_deadline_passed: set this value to true to swap out various "by deadline" links
       session_deadline_passed: false
       # session_deadline: proposals and stipend applications
-      session_deadline: March 8 at 11:59 p.m. CT
+      session_deadline: March 11 at 11:59 p.m. CT
       # session_confirm: date attendees will be notified
       session_confirm: March 25
 
