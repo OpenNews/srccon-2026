@@ -84,7 +84,7 @@ defaults:
       # price_base: set this value to the base ticket price
       price_base: $295
       # price_med: set this value to the medium-sized newsroom ticket price
-      price_med: $425
+      price_med: $495
       # price_full: set this value to the full-cost ticket
       price_full: $695
       # price_stipend: set this value to the stipend ticket price
