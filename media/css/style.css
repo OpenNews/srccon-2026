@@ -144,6 +144,7 @@ strong {
 }
 
 .hub #main-logo img {
+  height: auto;
   width: 600px;
 }
 
