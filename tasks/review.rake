@@ -22,7 +22,7 @@ namespace :review do
             "http://localhost",
             "http://127.0.0.1",
             "https://use.typekit.net",
-            %r{\Ahttps://opennews\.us5\.list-manage\.com/}
+            %r{\Ahttps://opennews\.us5\.list-manage\.com/},
           ],
           allow_hash_href: false,
           check_external_hash: false, # Skip hash validation
@@ -32,18 +32,18 @@ namespace :review do
             followlocation: true,
             maxredirs: 5,
             connecttimeout: 10,
-            timeout: 30
+            timeout: 30,
           },
           hydra: {
-            max_concurrency: 2 # Be gentle with external sites
-          }
+            max_concurrency: 2, # Be gentle with external sites
+          },
           # optional
           # cache: {
           #   timeframe: {
           #     external: "1d", # Cache external link checks for 1 day
           #   },
           # },
-        }
+        },
       ).run
       puts "✅ External link validation passed!"
     rescue => e
