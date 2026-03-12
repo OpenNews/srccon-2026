@@ -8,7 +8,7 @@ permalink: /
 # Join us at {{ page.event_name }}! {#join}
 
 {% if page.session_deadline_passed == false %}
-**Our [call for participation form](/participation/form/) is open** and includes questions to tell us about all the ways you might want to participate at {{ page.event_name }}, including as an attendee or a session facilitator. We will review entries and notify everyone before or on {{ page.session_confirm }}. If invited to attend or facilitate a session, you will receive a link to purchase a ticket with [prices starting at {{ page.price_base }} plus fees](/attendees/#tickets).
+**Our [call for participation form](/participation/form/) is open** and includes questions to tell us about all the ways you might want to participate at {{ page.event_name }}, including as an attendee, facilitator or volunteer. We will review session entries after March 11 and notify everyone before or on {{ page.session_confirm }} about their session or scholarship status. If invited to attend or facilitate a session, you will receive a link to purchase a ticket with [prices starting at {{ page.price_base }} plus fees](/attendees/#tickets).
 {% endif %}
 
 **SRCCON sessions are workshops, not panels. Conversations, not presentations.** This is a hands-on event about changing journalism&mdash;we're looking for [topics you don't see at traditional conferences](/sessions/proposal-guide/#what-we-look-for) and sessions that help people imagine a better future together. Our whole program (including breaks and meals!) is about discussion and connection as peers. If you haven't led a session like that before, our [proposal guide](/sessions/proposal-guide/) is here to help (and [so are we](mailto:srccon@opennews.org)).
