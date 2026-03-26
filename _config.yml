@@ -66,7 +66,7 @@ defaults:
       # cta_button_text / cta_button_link: enable the orange "call to action" button
       # cta_button_text: Sponsor SRCCON!
       # cta_button_link: https://opennews.org/sponsors/
-      cta_button_text: Propose a session!
+      cta_button_text: SIGN UP FOR SRCCON 2026!
       cta_button_link: /participation/form/
       # form_link: set this value to the URL for the ticket purchase or registration form
       form_link: https://airtable.com/embed/apph4nQHGI9JBTCHe/pagGXNa51i21tMFaJ/form
