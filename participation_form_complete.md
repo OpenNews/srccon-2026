@@ -1,10 +1,10 @@
 ---
 section: attendees
 permalink: /participation/complete/
-title: Thank you for completing the SRCCON 2026 CFP!
+title: Thank you for your CFP!
 ---
 
-# Thanks for completing the SRCCON 2026 call for participation {#participate}
+# Thank you for asking to join us at SRCCON 2026! {#participate}
 
 We seriously appreciate you for taking the time to let us know how you'd like to participate at {{ page.event_name }}! If you have a friend, peer or colleague who might need SRCCON in their lives, feel free to let them know how they can [take part](/attendees) and share the [call for participation form](/participation/form/) so they can let us know they're interested. We'll keep the CFP open for attendees as long as space remains available.
 
