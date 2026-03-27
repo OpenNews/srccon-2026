@@ -1,7 +1,7 @@
 ---
 section: attendees
 permalink: /ticket/complete/
-title: See you at SRCCON 2026!
+title: See you in Minneapolis!
 ---
 
 # Thank you for joining us at SRCCON 2026! {#ticket}
