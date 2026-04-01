@@ -74,7 +74,7 @@
   {
     "id": "how-investigated-ethnic-cleansing",
     "title": "How we investigated ethnic cleansing by the Sudanese Armed Forces",
-    "facilitators": "",
+    "facilitators": "Sabrina Slipchenko",
     "description": "When journalists say it's \"hard to report on Sudan,\" it can sometimes sound like an excuse not to engage. Granted, the obstacles are real: unreliable geospatial data, journalists in exile, communications blackouts, a media landscape fractured by information warfare, and access to the country controlled by the Sudanese Armed Forces \u2014 the same government we found responsible for the ethnic cleansing of non-Arab farming communities.\n\nOur investigation mapped survivor testimony and reconstructed a massacre from one of the war's key battles. To get there, we used whatever tools we could find and adapt: Telegram, TikTok, a patchwork of geospatial databases, and a lot of creative problem-solving. In this session, we'll walk through how we built that reporting infrastructure under severe constraints, and what other journalists working in similarly difficult environments might borrow or build on."
   },
   {
@@ -99,7 +99,7 @@
     "id": "transformative-thinking-afrola-project-optimist",
     "title": "News startup as laboratory: Transformative thinking and programming at AfroLA and Project Optimist",
     "facilitators": "Nora Hertel, Dana Amihere",
-    "description": "Share your experiences and hear from news startups that experiment with audience-rooted programs from an ownership campaign and printed 'zines to solutions journalism. AfroLA covers Los Angeles with unapologetically Black storytelling. Project Optimist produces solution-focused news for rural Minnesota. They'll share how they\u2019ve transformed their thinking on how to run a newsroom and what has worked (or not worked) in practice. \n\n(We're still developing an activity or discussion points for audience engagement.)"
+    "description": "Share your experiences and hear from news startups that experiment with audience-rooted programs from an ownership campaign and printed 'zines to solutions journalism. AfroLA covers Los Angeles with unapologetically Black storytelling. Project Optimist produces solution-focused news for rural Minnesota. They'll share how they\u2019ve transformed their thinking on how to run a newsroom and what has worked (or not worked) in practice."
   },
   {
     "id": "people-dont-care-local-government",
@@ -115,7 +115,7 @@
   },
   {
     "id": "putting-open-back-source",
-    "title": "Putting the Open back in Source: how can we make it as easy as 1-2-3, open source-ame?",
+    "title": "Putting the Open back in Source: How can we make it as easy as 1-2-3, open source-ame?",
     "facilitators": "Emilia Ruzicka, Tiff Fehr",
     "description": "The number of open source projects produced by journalists is shrinking. News organizations are innovating behind closed doors, producing awesome work, but without clear insight into the technical process that led to the final product. This setup makes it more difficult to learn from others and is a missed opportunity to document data and processes that could be useful in the future. However, keeping information off the web prevents it from being processed by AI tools itching to take even more data from journalism.\n\nHow can we revive open source journalism as reporters, editors, newsroom leaders, and more? What might incentivize news organizations to get on board with more widespread open source efforts? What can we do to share amongst ourselves to uplift and iterate journalistic work without feeding that information directly back to private AI tech companies? These questions and more will be on the table for discussion!"
   },
