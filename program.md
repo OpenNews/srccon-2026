@@ -9,7 +9,9 @@ title: Our Program
 The following sessions have been confirmed so far for {{ page.event_name }}. Thank you to everyone who submitted proposals! We still have a handful of sessions left to finalize, and descriptions here will evolve in the weeks leading up to the event.
 <!-- We'll publish the complete schedule with session dates and times soon. -->
 
-**If you're figuring out travel plans:** {{ page.event_name }} will begin around 9am on the first day and closes around 6pm on the second day. Most participants arrive in the afternoon the day before SRCCON starts and head home the morning after it wraps.
+**If you're figuring out travel plans:** {{ page.event_name }} will begin around 9am on the first day and closes around 6pm on the second day. Most participants arrive in the afternoon the day before SRCCON starts and head home the morning after it wraps. 
+
+Since this is our 15th year as OpenNews, we'll likely be hosting unofficial (i.e. non-SRCCON) events the evening before and the day after the conference — in case you want to hang with the community longer!
 
 ### Sessions {#sessions}
 
