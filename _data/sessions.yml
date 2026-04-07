@@ -48,6 +48,12 @@
     "description": "Newsletters are one of journalism\u2019s most direct and owned relationships with audiences, making it crucial to have data on what\u2019s working and what\u2019s not. However, the data we rely on to make their decisions is increasingly incomplete, misleading or unavailable.\n\nIn this session, we\u2019ll discuss how to use metrics to map out a newsletter strategy, from launching newsletters, determining a product/market fit and iterating on current newsletters. Participants will share the data they look at to shape their newsletter decisions, how their newsletters fit into their broader organization\u2019s strategy, and discuss problems and pitfalls with the newsletter data they have access to. We don\u2019t have all the answers! But we hope at the end of the session, participants will leave with more direction on how to use data to guide their newsletter strategy."
   },
   {
+    "id": "hiring-doesnt-have-to-suck",
+    "title": "Hiring doesn't have to suck for everyone",
+    "facilitators": "Emma Carew Grovum, Jonah Newman",
+    "description": "This is meant to be a candid conversation about how hiring processes can be so much better if we just try a little harder to be better. More clearly defined timelines and transparent communication between hiring team and candidates. Clarity from the hiring team about what they are looking for in their next hire and how candidates might be evaluated. NO GHOSTING (FROM BOTH SIDES!!!) And we can talk about best practices for an equitable and inclusive hiring process -- candidate office hours, FAQ docs, short answer Qs vs a cover letter, etc. Ideally this is also a space to help folks who are new to hiring or accidentally involved in hiring to widen their toolkit while also learning how to balance hiring duties with day-to-day jobs."
+  },
+  {
     "id": "non-writing-journalists-co-bylines",
     "title": "How do we create a world where non-writing journalists don\u2019t have to fight for co-bylines",
     "facilitators": "Greg Linch",
@@ -94,6 +100,18 @@
     "title": "Let\u2019s create a best practices guide for writing News Nerd documentation",
     "facilitators": "Alexandra Kanik",
     "description": "Every news nerd team (even one-person teams) functions differently because we all work under such different pressures and environments. Part of what makes us unique is how nimble we are, and at the same time that speed of iteration and change also means we quickly learn what should or could be better.\n\nWe\u2019re proposing coming together as a community to prototype a framework that news nerds today and in the future can use as their source - heh - and starting point for documentation about their teams, work, standards and processes."
+  },
+  {
+    "id": "make-data-public-usable",
+    "title": "Make your data public (and usable)",
+    "facilitators": "Steven Rich",
+    "description": "Too often in journalism, big data projects make a huge impact in communities across the country and world. And under the guise of competition, or just lack of resources, the raw data that could be useful for so many other things stays hidden on one person's computer. Let's talk about how to get more of our data available to the public and in a useful format (i.e. downloadable data in smaller chunks for people who don't know how to use anything but Excel). And let's talk about making it a part of our permanent workflows."
+  },
+  {
+    "id": "manage-our-emotional-selves",
+    "title": "Managing our emotional selves",
+    "facilitators": "Kathy Lu",
+    "description": "We are emotional creatures and cover highly emotional topics, but we often do not talk about emotions at work. This session, which includes an breakout activity for the room, will take participants through understanding where our emotions originate, how to be more attuned to them, and how to move through them so we lessen the chances of burnout."
   },
   {
     "id": "transformative-thinking-afrola-project-optimist",
