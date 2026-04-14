@@ -42,10 +42,22 @@
     "description": "Journalists complain about and build tools all the time, but are we designing them with real newsroom constraints or user interest in mind?\n\nWe build:\n* Databases and dashboards that aren't updated\n* Databases of names of journalists. Does anyone use them?\n* AI tools no one trusts\n* Tools that are replications of what's already been done\n\nThis interactive session will examine how tools get built and how do we get people to adopt them? When should we not build?"
   },
   {
+    "id": "journalist-caregivers-kids",
+    "title": "Finding each other: A space for journalist-caregivers with young kids",
+    "facilitators": "Tasmiha Khan",
+    "description": "Journalism is demanding. Caregiving is demanding. Doing both at the same time, especially with young kids, can feel isolating in ways that are hard to name out loud. This session is a space to do exactly that.\n\nWe'll start by sharing honestly about what this juggle actually looks like: the missed deadlines, the conference logistics, the guilt, the joy, the creative fuel caregiving can unexpectedly provide. From there we'll move into problem-solving together. What strategies, tools, and workarounds have actually helped? We'll close by building something concrete: a small, ongoing community of journalist-caregivers who don't want to lose each other after the conference ends. You'll leave with people, not just ideas."
+  },
+  {
     "id": "using-imperfect-data-newsletter-strategy",
     "title": "From vibes to signals: Using imperfect data to shape newsletter strategy",
     "facilitators": "Emily Hood, Aditi Mukund",
     "description": "Newsletters are one of journalism\u2019s most direct and owned relationships with audiences, making it crucial to have data on what\u2019s working and what\u2019s not. However, the data we rely on to make their decisions is increasingly incomplete, misleading or unavailable.\n\nIn this session, we\u2019ll discuss how to use metrics to map out a newsletter strategy, from launching newsletters, determining a product/market fit and iterating on current newsletters. Participants will share the data they look at to shape their newsletter decisions, how their newsletters fit into their broader organization\u2019s strategy, and discuss problems and pitfalls with the newsletter data they have access to. We don\u2019t have all the answers! But we hope at the end of the session, participants will leave with more direction on how to use data to guide their newsletter strategy."
+  },
+  {
+    "id": "front-line-leadership",
+    "title": "Front-line leadership: How newsrooms manage risk, safety, and law enforcement coverage",
+    "facilitators": "Juanita Islas",
+    "description": "Newsroom leaders from cities experiencing heightened law-enforcement activity will discuss how they are assessing risk and fulfilling their responsibility to protect journalists in the field.\n\nDrawing on real newsroom decision-making, panelists will explore how they prepare reporters for volatile assignments, establish safety protocols, respond to emergencies, and balance editorial imperatives with physical and legal risk. They'll also discuss internal communication, legal coordination, community relationships, and how leadership decisions before and during an assignment directly affect reporter safety.\n\nThis moderated discussion, led by the International Women's Media Foundation (IWMF), will offer practical guidance for editors and managers navigating unpredictable reporting conditions — with candid reflections on what has worked, what hasn't, and what newsrooms must do differently going forward."
   },
   {
     "id": "hiring-doesnt-have-to-suck",
@@ -84,6 +96,12 @@
     "description": "When journalists say it's \"hard to report on Sudan,\" it can sometimes sound like an excuse not to engage. Granted, the obstacles are real: unreliable geospatial data, journalists in exile, communications blackouts, a media landscape fractured by information warfare, and access to the country controlled by the Sudanese Armed Forces \u2014 the same government we found responsible for the ethnic cleansing of non-Arab farming communities.\n\nOur investigation mapped survivor testimony and reconstructed a massacre from one of the war's key battles. To get there, we used whatever tools we could find and adapt: Telegram, TikTok, a patchwork of geospatial databases, and a lot of creative problem-solving. In this session, we'll walk through how we built that reporting infrastructure under severe constraints, and what other journalists working in similarly difficult environments might borrow or build on."
   },
   {
+    "id": "secure-whistleblowing-system",
+    "title": "How we remade a secure whistleblowing system to support remote work and protect you from malware",
+    "facilitators": "John Skinner, Kevin O'Gorman",
+    "description": "SecureDrop is a whistleblowing system designed to help journalists and high-risk sources communicate while protecting the anonymity of sources and the confidentiality of their messages. It has been used by news organizations globally for over a decade as a key tool for investigative reporting. Our presentation will cover how recent changes we've made will make it easier and safer to work with leaks and sources, collaborate with your team on investigations, and use SecureDrop more easily when working remotely.\n\nSecureDrop gives newsrooms a safe and secure way to receive leaks from sources, but historically did not solve the problem of how to safely work with leaked files after they'd been received. Reviewing submissions has also been slow and labour-intensive for journalists. We've built a new system for journalists, SecureDrop Workstation, that makes it faster and safer to review submissions. Pilot users have already reported review time going from several hours to minutes. It also makes it safer to work with the documents you receive while protecting you from malware."
+  },
+  {
     "id": "how-build-better-support-networks",
     "title": "Immigration inside the newsroom: How do we build better support networks for international journalists",
     "facilitators": "Jasmine (Ye) Han, Kai Teoh",
@@ -100,6 +118,12 @@
     "title": "Let\u2019s create a best practices guide for writing News Nerd documentation",
     "facilitators": "Alexandra Kanik",
     "description": "Every news nerd team (even one-person teams) functions differently because we all work under such different pressures and environments. Part of what makes us unique is how nimble we are, and at the same time that speed of iteration and change also means we quickly learn what should or could be better.\n\nWe\u2019re proposing coming together as a community to prototype a framework that news nerds today and in the future can use as their source - heh - and starting point for documentation about their teams, work, standards and processes."
+  },
+  {
+    "id": "talk-about-values",
+    "title": "Let\u2019s talk about values",
+    "facilitators": "Amy Kovac-Ashley",
+    "description": "We've got a problem in journalism that transcends business models, technology and trust. It's the question of values. We talk about \"journalistic values,\" but what we mean by that varies. Our institutions inconsistently articulate their values or are opaque about how their values inform their decisions. People within these institutions often feel that value gap but aren't positioned to do much about it.\n\nIn this session, we will take a deep dive into values, starting with our own personal values, and how we live them out in our lives and work. We'll also look at what happens when our personal values are not aligned with our work. Together, we'll create a resource of ideas for how journalists and journalism institutions can more clearly articulate their values and demonstrate their fidelity to them."
   },
   {
     "id": "make-data-public-usable",
@@ -150,6 +174,12 @@
     "description": "When someone asks an AI model about a breaking news event, how much does the way they ask shape what they get back? Our team at Gazzetta has been running structured audits testing how leading LLMs respond to politically cued and framed prompts in authoritarian information ecosystems, specifically in Iran and China. What we've found is striking: models differ meaningfully in how they mirror or resist state-aligned framing, with real implications for how users distinguish between journalism and propaganda.\n\nIn this session, we'll briefly share our research findings and methodology, then put the tools directly in participants' hands. Using cases from our conference home of Minneapolis, including recent ICE enforcement actions, shootings, and historical police killings, we'll work together in real time to design prompts, run tests across multiple models, and compare what comes back. You'll leave with a reproducible methodology and the confidence to apply it in your own work, whether you're a journalist covering AI, a researcher using LLMs to investigate, or navigating something in between."
   },
   {
+    "id": "rebellious-sound-play",
+    "title": "Sound play and rebellious human-made craft",
+    "facilitators": "Aura Walmer",
+    "description": "In this workshop, we will explore how to craft short form audio documentaries, sound art, and podcasts that break the mold of standard podcast production, but which honor the techniques of sound design. In the spirit of movements like Audio Flux, this session will provide attendees with tools to layer and capture sound, and to craft a rebellious, human-made piece of journalism that could be bizarre, refreshing, or simply a much needed change from the manufactured norm. Playful story craft is important now more than ever. We are bombarded with a surplus of cookie-cutter produced audio formats, but what would it be like to integrate playfulness and sound art into our storytelling?\n\nWe will consider whether there is space for DIY audio montages as a form of storytelling or if nontraditional methods such as sonification are worth pursuing. We will discuss the dance between the human-made craft and the AI-generated alternative, and what might fall between. Attendees will have a chance to express what is most important to them in how they consume stories and information sonically, and brainstorm new formats that would go against the grain of overused methods."
+  },
+  {
     "id": "why-journalists-stay-profession-crisis",
     "title": "Still here: Why journalists stay in a profession in crisis",
     "facilitators": "Luisa Ortiz P\u00e9rez, Joe Ruiz",
@@ -160,6 +190,12 @@
     "title": "Teach newsletters, not wire stories",
     "facilitators": "Blake Eskin",
     "description": "Teaching AP Style and the inverted pyramid made sense in an era where entry-level reporting and editing jobs at newspapers of any size required this knowledge. Those jobs are mostly gone, and the newsroom's division of labor \u2014 writer vs. photographer, editorial vs. business \u2014 has dissolved. Yet most journalism education puts a priority on the isolated craft of writing voiceless news reports (or voicey feature stories). \n\nPutting together a newsletter gives aspiring journalists the chance to practice a much wider range of skills than writing an article: not only reporting and writing but audience research and engagement, information design, visual communication, aggregation, linking to and attributing prior knowledge, proofreading, publishing on a schedule\u2026\n\nWhat's the first project you'd give an aspiring journalist? What other forms work better than the article for teaching the skills aspiring journalists need today to meet the information needs of their audiences?"
+  },
+  {
+    "id": "lessons-art-crime",
+    "title": "The biggest lessons I learned while reporting on art and art crime",
+    "facilitators": "Karen Ho",
+    "description": "For nearly three years, I covered art and art crime for ARTnews. I didn't have a background in either beat, but successfully used my previous experience reporting on finance and economics to produce distinctive features, data and investigative coverage. This included reports on artworks and historical artifacts stolen from galleries, homes, and museums; museums repatriating stolen and looted items; art dealers accused of breaking US sanctions; NFT scams; the British Museum theft scandal; federal legislation about Nazi-looted artworks and unreturned Native ancestral remains; as well as a range of lawsuits about art loans, accusations of wrongful dismissals, copyright infringement, intellectual property, class-action cases against AI image generators, and high-profile art insurance claims.\n\nIt turns out that art and art crime aren't as niche as many people think. This presentation will explain how I was able to find \"local\" art angles for national and international news stories, the tools I used and developed to cover these beats, and the simple secrets behind some of my biggest scoops."
   },
   {
     "id": "future-news-accessible",
