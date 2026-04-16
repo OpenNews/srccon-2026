@@ -5,6 +5,10 @@ on:
     - cron: "0 12 * * 1" # Every Monday at noon UTC
   workflow_dispatch:
 
+permissions:
+  contents: read
+  issues: write
+
 jobs:
   health-check:
-    uses: OpenNews/opennews-actions/.github/workflows/jekyll-health-check.yml@v1
+    uses: OpenNews/opennews-actions/.github/workflows/jekyll-health-check.yml@4c689dedf3558214acd7e674a62b0a65b0014048

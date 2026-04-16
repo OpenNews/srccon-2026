@@ -20,7 +20,7 @@ jobs:
 
     steps:
       - name: Build & test
-        uses: OpenNews/opennews-actions/jekyll-build@v1
+        uses: OpenNews/opennews-actions/jekyll-build@4c689dedf3558214acd7e674a62b0a65b0014048
         with:
           run-checks: "true"
           run-tests: "true"

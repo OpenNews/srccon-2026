@@ -2,6 +2,8 @@ name: Deploy to S3
 
 permissions:
   contents: read
+  id-token: write
+  deployments: write
 
 on:
   push:
@@ -11,7 +13,7 @@ on:
 
 jobs:
   deploy:
-    uses: OpenNews/opennews-actions/.github/workflows/jekyll-deploy.yml@v1
+    uses: OpenNews/opennews-actions/.github/workflows/jekyll-deploy.yml@4c689dedf3558214acd7e674a62b0a65b0014048
     with:
       environment: ${{ github.ref == 'refs/heads/main' && 'production' || 'staging' }}
       production-url: https://srccon.org
