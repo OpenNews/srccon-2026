@@ -2,6 +2,8 @@ name: Deploy to S3
 
 permissions:
   contents: read
+  id-token: write # Required for OIDC authentication to AWS
+  deployments: write # Required for creating/updating GitHub Deployments
 
 on:
   push:
