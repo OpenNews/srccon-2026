@@ -30,8 +30,11 @@
         {% endif %}
         <div class="sub-nav">
           <a href="/program/">Program</a> &nbsp;&bull;&nbsp;
-          <a href="/attendees/">Attendee info</a>{% if page.schedule_live ==
-          true %}<a href="/schedule/">Schedule</a> {% endif %}
+          <a href="/attendees/">Attendee info</a>{% if page.schedule_live == true %}<a
+            href="/schedule/"
+            >Schedule</a
+          >
+          {% endif %}
           <!-- <a href="/sessions/proposal-guide/">Session proposal guide</a> -->
           {% if page.cta_button_text %}
           <a href="{{ page.cta_button_link }}" class="button">{{ page.cta_button_text }}</a>
