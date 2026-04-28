@@ -8,51 +8,41 @@ title: Our sponsors
 
 Interested in having your company or organization get involved? [Find out more about becoming a sponsor of SRCCON](/sponsors/about/).
 
-### Accessibility & scholarships sponsors {#a11y}
+### Accessibility and Scholarships sponsors {#a11y}
 
 [![The Knight Foundation](/media/img/partners/knight_foundation.png)](https://knightfoundation.org/)
 
-We are social investors who support a more effective democracy by funding free expression and journalism, arts and culture in community, research in the areas of media and democracy, and the success of American cities and towns where the Knight brothers once published newspapers.
+We are social investors who support democracy by funding free expression and journalism, arts and culture in community, research in areas of media and democracy, and the success of American cities and towns where the Knight brothers once published newspapers. Learn more at kf.org and follow @knightfdn on social media.
 
-{% comment %}<!-- remove to add -->
 [![The Data-Driven Reporting Project](/media/img/partners/ddrp_knightlab.png)](https://datadrivenreporting.medill.northwestern.edu/)
 
-[The Data-Driven Reporting Project](https://datadrivenreporting.medill.northwestern.edu/) equips local news organizations and freelance journalists—especially those who serve local and underrepresented communities—with financial awards and additional resources to work on data- or document-driven investigative work. Learn more about [the program here](https://datadrivenreporting.medill.northwestern.edu/how-to-apply). The DDRP is based out of [Northwestern University Knight Lab](https://knightlab.northwestern.edu/) at [Medill](https://medill.northwestern.edu/) and was founded with support from the [Google News Initiative](https://newsinitiative.withgoogle.com/).
-{% endcomment %}<!-- remove to add -->
+### Program and Event Sponsors {#program}
 
-{% comment %}<!-- remove to add -->
+[![Mozilla Foundation](/media/img/partners/MozillaFoundation.svg)](https://www.mozillafoundation.org/en/)
 
-### Meal Sponsors {#meal}
+[![Democracy Fund](/media/img/partners/democracy_fund.png)](https://www.democracyfund.org/)
+
+[![Freedom of the Press Foundation](/media/img/partners/fopf.png)](https://freedom.press)
+
+### Meal and Break sponsors {#snacks}
 
 [![University of Missouri School of Journalism](/media/img/partners/mizzou_journalism.png)](https://journalism.missouri.edu/)
 
+
 [![Alley Interactive](/media/img/partners/alley.png)](https://alley.co/)
 
-[![The Lenfest Institute](/media/img/partners/lenfest.png)](https://www.lenfestinstitute.org/)
-{% endcomment %}<!-- remove to add -->
-
-### Break sponsors {#snacks}
-
-{% comment %}<!-- remove to add -->
-[![News Futures](/media/img/partners/news_futures.png)](https://www.newsfutures.org/)
 
 [![JSK Fellowships](/media/img/partners/jsk.png)](https://jsk.stanford.edu/)
 
-[![American Journalism Project](/media/img/partners/ajp.png)](https://www.theajp.org/)
-{% endcomment %}<!-- remove to add -->
 
 [![OpenNews Sustaining Members](/media/img/partners/opennews_sustainers.png)](https://opennews.org/donate/)
 
-OpenNews community members are our facilitators, volunteers, participants, _and_ help fund SRCCON for their peers.
 
 {% comment %}<!-- remove to add -->
 
-### Event sponsor {#event}
+[![The Lenfest Institute](/media/img/partners/lenfest.png)](https://www.lenfestinstitute.org/)
 
-[![Democracy Fund](/media/img/partners/democracy_fund.png)](https://www.democracyfund.org/)
-{% endcomment %}<!-- remove to add -->
-
-{% comment %}<!-- remove to add -->
+[![News Futures](/media/img/partners/news_futures.png)](https://www.newsfutures.org/)
 
 ### Local event sponsor {#local}
 
