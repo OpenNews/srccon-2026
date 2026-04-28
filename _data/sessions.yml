@@ -20,7 +20,7 @@
   {
     "id": "civic-journalism-community-organizing-how",
     "title": "Civic journalism, community organizing and how we build movement against the tide",
-    "facilitators": "William Lager",
+    "facilitators": "William Lager, Annemarie Dooling",
     "description": "What happens when the community is the media? Let's put our community organizer hats on and share what has worked to build up civic journalism with our communities. Were they pop-up newsrooms? A special newsletter? A zine, or was it something more? Showing up at every community event to create one on one relationships? Legacy media built itself on a separation from community with the idea that it would ensure objectivity and insulate power from informing the content, and we can see it has fallen short."
   },
   {
@@ -56,7 +56,7 @@
   {
     "id": "front-line-leadership",
     "title": "Front-line leadership: How newsrooms manage risk, safety, and law enforcement coverage",
-    "facilitators": "Juanita Islas",
+    "facilitators": "Divya Tewari, Mia Warren",
     "description": "Newsroom leaders from cities experiencing heightened law-enforcement activity will discuss how they are assessing risk and fulfilling their responsibility to protect journalists in the field.\n\nDrawing on real newsroom decision-making, panelists will explore how they prepare reporters for volatile assignments, establish safety protocols, respond to emergencies, and balance editorial imperatives with physical and legal risk. They'll also discuss internal communication, legal coordination, community relationships, and how leadership decisions before and during an assignment directly affect reporter safety.\n\nThis moderated discussion, led by the International Women's Media Foundation (IWMF), will offer practical guidance for editors and managers navigating unpredictable reporting conditions — with candid reflections on what has worked, what hasn't, and what newsrooms must do differently going forward."
   },
   {
@@ -134,7 +134,7 @@
   {
     "id": "manage-our-emotional-selves",
     "title": "Managing our emotional selves",
-    "facilitators": "Kathy Lu",
+    "facilitators": "Kathy Lu, Asad Chishti",
     "description": "We are emotional creatures and cover highly emotional topics, but we often do not talk about emotions at work. This session, which includes an breakout activity for the room, will take participants through understanding where our emotions originate, how to be more attuned to them, and how to move through them so we lessen the chances of burnout."
   },
   {
@@ -143,6 +143,12 @@
     "facilitators": "Nora Hertel, Dana Amihere",
     "description": "Share your experiences and hear from news startups that experiment with audience-rooted programs from an ownership campaign and printed 'zines to solutions journalism. AfroLA covers Los Angeles with unapologetically Black storytelling. Project Optimist produces solution-focused news for rural Minnesota. They'll share how they\u2019ve transformed their thinking on how to run a newsroom and what has worked (or not worked) in practice."
   },
+  {
+  "id": "nontraditional-roles-journalism",
+  "title": "Nontraditional roles in journalism",
+  "facilitators": "Kami Rieck",
+  "description": "Journalism careers aren't linear anymore, and not by choice. Between layoffs, shrinking newsrooms and new roles, including audience, product, platforms, newsletters, partnerships and comms, a lot of people build journalism-adjacent skills to stay afloat or grow. But the newsroom culture hasn't caught up. We still treat time outside a newsroom like a detour. This session is about changing that mindset because it's unfair and harmful for journalism. It narrows who gets to stay in the field (often based on who has a safety net), and it prevents newsrooms from hiring people who have worthwhile skills.\n\nI hope to lead a workshop session. We'll start by naming the assumptions we carry about non-newsroom experience (and where they show up in hiring and team culture). Then, in small groups, we'll rewrite a job post or interview question so it actually captures transferable skills, such as storytelling, product thinking and experimentation. We'll also build a rubric for evaluating portfolios and impact when someone's background doesn't look traditional, plus a few onboarding tips that help new hires thrive without forcing them to prove they belong. Attendees will leave with resources they can share with their team and a clearer way to talk about nonlinear career paths."
+  }
   {
     "id": "people-dont-care-local-government",
     "title": "People don't care about \"local government.\" They care about their street.",
@@ -200,8 +206,14 @@
   {
     "id": "future-news-accessible",
     "title": "The future of news is accessible",
-    "facilitators": "Stacy Kess",
+    "facilitators": "Stacy Kess, Keidra Chaney",
     "description": "As journalism becomes more digital and more directed to social media, news is leaving out millions of people. Disability is more common that most realize: 1 in 4 American adults identify as disabled; 1 in 5 American adults are on the spectrum of blindness or low vision; 1 in 20 American adults are Deaf or hard of hearing; and 1 in 100 American adults have a cognitive disability, but the digital journalism industry isn't reaching these potential news consumers \u2014\u00a0meaning potential lost readers, listeners, and watchers; potential lost revenue; and eventually, potential lost jobs. But it's more than these missing new audience member's dollars. Bringing in more readers, listeners, and watchers strengthens democracy, community, and civic participation. The future of news must be accessible."
+  },
+  {
+    "id": "ai-hidden-ways",
+    "title": "Uncovering the hidden ways that AI (money) is trying to shape AI coverage",
+    "facilitators": "Klaudia Jaźwińska, Adam Becker, Eileen Guo, Shazeda Ahmed",
+    "description": "This session intends to start an honest and open conversation about an under-addressed issue in tech reporting—that the very AI stakeholders that we report on are increasingly trying to shape coverage—and discuss concerns, questions, and how journalists and newsrooms should respond. What are the costs of accepting funding or training, especially in a media landscape that is increasingly financially precarious? What questions should newsroom leaders and reporters be asking as we consider these opportunities? And ultimately, how can we best maintain journalistic norms and serve our readers amid the AI sector's increasing influence in both news coverage and our daily lives?\n\nWe know this is a hard conversation for many, and we're not interested in ad hominem antagonizing of individuals or news outlets that are working with some of these organizations. Rather, we want to facilitate a conversation for people to share their own experiences, observations, concerns, and questions about emerging dynamics related to AI money and journalism—with the idea of coming away better-informed about the relationship between tech billionaires, AI boomers and doomers, newsrooms, and power."
   },
   {
     "id": "understanding-tracked-audience-behavior",
@@ -212,7 +224,7 @@
   {
     "id": "learned-building-newsroom-tech-stack",
     "title": "What I learned building a newsroom tech stack without knowing how to code",
-    "facilitators": "Nina Ignaczak",
+    "facilitators": "Nina Ignaczak, Janie Haseman",
     "description": "What does it actually look like to build production journalism tools without an engineering background, or an engineering budget? Nina Ignaczak, founder and executive director of Planet Detroit, will share real examples from her newsroom's experience shipping a civic engagement tool, a RAG-powered search API, an interactive directory of 600+ Michigan environmental organizations, and more, all through conversational AI development. But what surprised her most wasn't how much AI could do. It was how much results improved once she started thinking like a software engineer. Adopting a spec-driven process, defining who a tool is for, what working correctly looks like, and what broken looks like before touching any code, made everything better. \n\nUnderstanding basic architecture concepts meant more useful conversations with AI tools, fewer late-stage surprises, and tools that actually held up in production. The second half of the session turns it over to participants. In small groups, attendees will take a real problem from their own newsroom and work through the first steps of building a solution, drafting a spec, scoping the problem, thinking through edge cases. Everyone leaves with something concrete they can actually use, and a better sense of what's within reach when you pair curiosity with a little engineering discipline."
   },  {
     "id": "understanding-cultural-memory-community-storytelling",
