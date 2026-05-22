@@ -15,6 +15,8 @@ exclude:
     "tasks/*",
     "*.json",
   ]
+include:
+  - "schedule/sessions.json"
 collections:
   transcripts:
     output: true
