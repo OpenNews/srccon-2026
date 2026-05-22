@@ -750,21 +750,6 @@
     "notepad": ""
   },
   {
-    "id": "placeholder-thursday-pm-1-minnesota",
-    "title": "OPEN",
-    "description": "",
-    "facilitators": "",
-    "time": "2-3:15pm",
-    "day": "Thursday",
-    "timeblock": "thursday-pm-1",
-    "room": "Minnesota",
-    "everyone": "",
-    "social": "",
-    "break": "",
-    "transcription": "",
-    "notepad": ""
-  },
-  {
     "id": "wednesday-pm-break",
     "title": "Social break",
     "description": "Afternoon coffee, tea, and snack break before our final session block of the conference.",
@@ -852,21 +837,6 @@
     "social": "",
     "break": "",
     "transcription": "y",
-    "notepad": ""
-  },
-  {
-    "id": "placeholder-thursday-pm-2-minnesota",
-    "title": "OPEN",
-    "description": "",
-    "facilitators": "",
-    "time": "3:45-5pm",
-    "day": "Thursday",
-    "timeblock": "thursday-pm-2",
-    "room": "Minnesota",
-    "everyone": "",
-    "social": "",
-    "break": "",
-    "transcription": "",
     "notepad": ""
   },
   {
