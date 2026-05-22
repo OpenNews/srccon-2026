@@ -15,6 +15,8 @@ exclude:
     "tasks/*",
     "*.json",
   ]
+include:
+  - "schedule/sessions.json"
 collections:
   transcripts:
     output: true
@@ -73,9 +75,9 @@ defaults:
 
       # ⚠️ IMPORTANT "GATES" in page logic
       # schedule_live: set this value to true when the program should be exposed on the site
-      schedule_live: false
+      schedule_live: true
       # session_deadline_passed: set this value to true to swap out various "by deadline" links
-      session_deadline_passed: false
+      session_deadline_passed: true
       # session_deadline: proposals and stipend applications
       session_deadline: March 11 at 11:59 p.m. CT
       # session_confirm: date attendees will be notified
