@@ -44,7 +44,7 @@
   {
     "id": "journalist-caregivers-kids",
     "title": "Finding each other: A space for journalist-caregivers with young kids",
-    "facilitators": "Tasmiha Khan",
+    "facilitators": "Tasmiha Khan, André Natta",
     "description": "Journalism is demanding. Caregiving is demanding. Doing both at the same time, especially with young kids, can feel isolating in ways that are hard to name out loud. This session is a space to do exactly that.\n\nWe\u2019ll start by sharing honestly about what this juggle actually looks like: the missed deadlines, the conference logistics, the guilt, the joy, the creative fuel caregiving can unexpectedly provide. From there we\u2019ll move into problem-solving together. What strategies, tools, and workarounds have actually helped? We\u2019ll close by building something concrete: a small, ongoing community of journalist-caregivers who don\u2019t want to lose each other after the conference ends. You\u2019ll leave with people, not just ideas.",
   },
   {
@@ -116,19 +116,19 @@
   {
     "id": "create-best-documentation-practices",
     "title": "Let\u2019s create a best practices guide for writing News Nerd documentation",
-    "facilitators": "Alexandra Kanik",
+    "facilitators": "Alexandra Kanik, Shraddha Chakradhar",
     "description": "Every news nerd team (even one-person teams) functions differently because we all work under such different pressures and environments. Part of what makes us unique is how nimble we are, and at the same time that speed of iteration and change also means we quickly learn what should or could be better.\n\nWe\u2019re proposing coming together as a community to prototype a framework that news nerds today and in the future can use as their source - heh - and starting point for documentation about their teams, work, standards and processes.",
   },
   {
     "id": "talk-about-values",
     "title": "Let\u2019s talk about values",
-    "facilitators": "Amy Kovac-Ashley",
+    "facilitators": "Amy Kovac-Ashley, Robert Hernandez",
     "description": "We\u2019ve got a problem in journalism that transcends business models, technology and trust. It\u2019s the question of values. We talk about \"journalistic values,\" but what we mean by that varies. Our institutions inconsistently articulate their values or are opaque about how their values inform their decisions. People within these institutions often feel that value gap but aren\u2019t positioned to do much about it.\n\nIn this session, we will take a deep dive into values, starting with our own personal values, and how we live them out in our lives and work. We\u2019ll also look at what happens when our personal values are not aligned with our work. Together, we\u2019ll create a resource of ideas for how journalists and journalism institutions can more clearly articulate their values and demonstrate their fidelity to them.",
   },
   {
     "id": "make-data-public-usable",
     "title": "Make your data public (and usable)",
-    "facilitators": "Steven Rich",
+    "facilitators": "Steven Rich, Christian Martinez",
     "description": "Too often in journalism, big data projects make a huge impact in communities across the country and world. And under the guise of competition, or just lack of resources, the raw data that could be useful for so many other things stays hidden on one person\u2019s computer. Let\u2019s talk about how to get more of our data available to the public and in a useful format (i.e. downloadable data in smaller chunks for people who don\u2019t know how to use anything but Excel). And let\u2019s talk about making it a part of our permanent workflows.",
   },
   {
@@ -144,15 +144,9 @@
     "description": "Share your experiences and hear from news startups that experiment with audience-rooted programs from an ownership campaign and printed \u2019zines to solutions journalism. AfroLA covers Los Angeles with unapologetically Black storytelling. Project Optimist produces solution-focused news for rural Minnesota. They\u2019ll share how they\u2019ve transformed their thinking on how to run a newsroom and what has worked (or not worked) in practice.",
   },
   {
-  "id": "nontraditional-roles-journalism",
-  "title": "Nontraditional roles in journalism",
-  "facilitators": "Kami Rieck",
-  "description": "Journalism careers aren\u2019t linear anymore, and not by choice. Between layoffs, shrinking newsrooms and new roles, including audience, product, platforms, newsletters, partnerships and comms, a lot of people build journalism-adjacent skills to stay afloat or grow. But the newsroom culture hasn\u2019t caught up. We still treat time outside a newsroom like a detour. This session is about changing that mindset because it\u2019s unfair and harmful for journalism. It narrows who gets to stay in the field (often based on who has a safety net), and it prevents newsrooms from hiring people who have worthwhile skills.\n\nI hope to lead a workshop session. We\u2019ll start by naming the assumptions we carry about non-newsroom experience (and where they show up in hiring and team culture). Then, in small groups, we\u2019ll rewrite a job post or interview question so it actually captures transferable skills, such as storytelling, product thinking and experimentation. We\u2019ll also build a rubric for evaluating portfolios and impact when someone\u2019s background doesn\u2019t look traditional, plus a few onboarding tips that help new hires thrive without forcing them to prove they belong. Attendees will leave with resources they can share with their team and a clearer way to talk about nonlinear career paths."
-  },
-  {
     "id": "people-dont-care-local-government",
     "title": "People don\u2019t care about \"local government.\" They care about their street.",
-    "facilitators": "Maggie McGuire",
+    "facilitators": "Maggie McGuire, Michael Olson",
     "description": "Local news treats every story like a hit of spot news. A zoning fight isn\u2019t one article \u2014 it\u2019s a filing, three commission meetings, a public comment period, a legal  challenge, and a resolution eighteen months later. Stories have lifecycles, but we publish them as isolated events, and the civic knowledge that would help people follow along \u2014 how to search public databases, file records requests, read a zoning decision \u2014 is siloed inside journalism and government. Nobody\u2019s teaching it.\n\nAt the Moab Sun News, we\u2019ve been experimenting with lifecycle projects that use the whole animal: wiki-style reference sites where coverage accumulates by subject, searchable meeting archives, subject-based alerts, public-facing trainings with experts who\u2019ve never taught the public before, and tools that turn readers into contributors. In this session, we\u2019ll explore a toolkit of these models, then you\u2019ll design your own: pick an issue your community cares about, figure out what tools fit, how each piece feeds the others, and what makes it sustainable for a small team. You\u2019ll leave with a concrete sketch you can start building next month.",
   },
   {
@@ -170,7 +164,7 @@
   {
     "id": "reporting-solutions-world-fire",
     "title": "Reporting solutions when the world Is on fire",
-    "facilitators": "Jaisal Noor",
+    "facilitators": "Jaisal Noor, Kate Fishman",
     "description": "By most accounts, the media\u2019s current approach is neither creating a well-informed public nor truly holding the powerful to account. The industry\u2019s relentless focus on crisis and spectacle has driven away news consumers, fueled deep distrust in institutions and the media itself, and left many journalists burned out or leaving the profession altogether. Audiences are left overwhelmed, disengaged and without the information they need to address the biggest problems facing their communities. \n\nThis workshop will create space for journalists to reflect on how to report on solutions at a time when many feel overwhelmed by the state of the world.  We\u2019ll explore how to cover responses without minimizing harm or injustice, and how to build trust with communities by working in partnership with them.  The goal is for participants to leave with actionable ideas, practical approaches and a renewed sense of possibility for reporting constructively toward a better future.",
   },
   {
@@ -199,8 +193,8 @@
   },
   {
     "id": "lessons-art-crime",
-    "title": "The biggest lessons I learned while reporting on art and art crime",
-    "facilitators": "Karen Ho",
+    "title": "The biggest lessons we learned while covering science scams, fraud and art crime",
+    "facilitators": "Karen K. Ho, Kate Travis",
     "description": "For nearly three years, I covered art and art crime for ARTnews. I didn\u2019t have a background in either beat, but successfully used my previous experience reporting on finance and economics to produce distinctive features, data and investigative coverage. This included reports on artworks and historical artifacts stolen from galleries, homes, and museums; museums repatriating stolen and looted items; art dealers accused of breaking US sanctions; NFT scams; the British Museum theft scandal; federal legislation about Nazi-looted artworks and unreturned Native ancestral remains; as well as a range of lawsuits about art loans, accusations of wrongful dismissals, copyright infringement, intellectual property, class-action cases against AI image generators, and high-profile art insurance claims.\n\nIt turns out that art and art crime aren\u2019t as niche as many people think. This presentation will explain how I was able to find \"local\" art angles for national and international news stories, the tools I used and developed to cover these beats, and the simple secrets behind some of my biggest scoops.",
   },
   {
@@ -218,7 +212,7 @@
   {
     "id": "understanding-tracked-audience-behavior",
     "title": "Understanding what gets tracked about your audience and their behavior in your product",
-    "facilitators": "Julia Haslanger",
+    "facilitators": "Julia Haslanger, Brian Boyer",
     "description": "Where does all that data about how many people read/watched your story come from? This session will be a little bit of web analytics 101 (including going into the browser console and spying on how your favorite news site is logging everything you do), but we\u2019ll also have conversations about the limitations of tracking (both technical and philosophical), the ethics involved, the legal landscape, and more. If there\u2019s interest, we\u2019ll dive into how tracking is different within a mobile app, how the social platforms share the data they track, and more. And, if people in the rooms have opinions they want to share, we could also do a vent/praise session about various analytics vendors.",
   },
   {
@@ -236,6 +230,6 @@
     "id": "artistic-journalism-not-use-ai",
     "title": "You don\u2019t need to be an artist to do artistic journalism (and how not to use AI)",
     "facilitators": "Jakub G\u00f3rnicki",
-    "description": "Journalism is drowning in a sea of perfectly structured, frictionless, AI-generated content. But this isn\u2019t the first time a new technology has forced a medium to evolve. When photography arrived, painting was freed from strict realism and became art. When radio broke news faster, print had to dig deeper. When dry facts weren\u2019t enough, Truman Capote and the New Journalism movement brought literary artistry to reportage. AI is simply our newest catalyst. It is forcing journalism to find its new purpose: deep, visceral, un-automatable emotion.\n\nIn this 75-minute interactive workshop, we will explore how to apply artistic methods to our daily reporting to create an antidote to shallow media. We\u2019ll look at real examples of how to borrow frameworks from theater, street art, and sound design. Then, we\u2019ll break into groups for a rapid-fire design sprint using your own upcoming stories. You don\u2019t need a fine arts degree to do this. You\u2019ll leave with concrete tools and a blueprint to transform a standard pitch into a bold, artistic experience that no algorithm can replicate.",
+    "description": "Journalism is being flooded with perfectly structured, AI-generated material. But this isn’t the first time a new technology has forced a medium to change. Photography pushed painting beyond realism. Radio made print dig deeper. New Journalism brought literary force into reportage. AI is the newest catalyst.\n\nIt should not push journalism to become more machine-like. It should push us toward what machines cannot produce: presence, risk, emotion, and form.\n\nIn this 75-minute interactive workshop, we will use artistic methods as working tools, not decoration. We’ll look at examples from theater, street art, sound design, and exhibition-making, then break into groups for a rapid design sprint using participants’ own upcoming stories.\n\nNo fine arts degree required. Participants will leave with practical prompts and a simple blueprint for transforming a standard pitch into an artistic journalism format they can test in their own newsroom.",
   },
 ]
