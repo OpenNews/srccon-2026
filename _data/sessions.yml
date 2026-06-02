@@ -150,9 +150,9 @@
     "description": "Local news treats every story like a hit of spot news. A zoning fight isn\u2019t one article \u2014 it\u2019s a filing, three commission meetings, a public comment period, a legal  challenge, and a resolution eighteen months later. Stories have lifecycles, but we publish them as isolated events, and the civic knowledge that would help people follow along \u2014 how to search public databases, file records requests, read a zoning decision \u2014 is siloed inside journalism and government. Nobody\u2019s teaching it.\n\nAt the Moab Sun News, we\u2019ve been experimenting with lifecycle projects that use the whole animal: wiki-style reference sites where coverage accumulates by subject, searchable meeting archives, subject-based alerts, public-facing trainings with experts who\u2019ve never taught the public before, and tools that turn readers into contributors. In this session, we\u2019ll explore a toolkit of these models, then you\u2019ll design your own: pick an issue your community cares about, figure out what tools fit, how each piece feeds the others, and what makes it sustainable for a small team. You\u2019ll leave with a concrete sketch you can start building next month.",
   },
   {
-    "id": "developing-designing-distributing-journalism-zines",
+    "id": "develop-design-distribute-zines",
     "title": "Print goes underground: Developing, designing, and distributing journalism zines",
-    "facilitators": "Sarah Bennett",
+    "facilitators": "Sarah Bennett, Chelsea Kurnick",
     "description": "When digital platforms fail communities \u2014 through paywalls, algorithmic suppression, language barriers or distrust \u2014 how can local journalists distribute reliable information? Zine makers have had an answer for decades: print it, fold it, put it in people\u2019s hands. \n\nThis session is a practitioner (and practitioner-curious) conversation about small-batch, alternative print as an emerging and legitimate tool for informing and engaging communities. We\u2019ll talk through our experiences and ideas for the three phases of zine production \u2014 develop, design, and distribute \u2014 using examples from recent journalism zines, student work, and entries from the SPJ\u2019s first-ever Zine Prize as jumping-off points. We\u2019ll start a shared best practices document together, and I\u2019ll try to turn our notes into a physical zine, printed overnight and in your hands on day two.",
   },
   {
@@ -217,10 +217,11 @@
   },
   {
     "id": "learned-building-newsroom-tech-stack",
-    "title": "What I learned building a newsroom tech stack without knowing how to code",
+    "title": "Think like an engineer: Building newsroom tools without knowing how to code",
     "facilitators": "Nina Ignaczak, Janie Haseman",
-    "description": "What does it actually look like to build production journalism tools without an engineering background, or an engineering budget? Nina Ignaczak, founder and executive director of Planet Detroit, will share real examples from her newsroom\u2019s experience shipping a civic engagement tool, a RAG-powered search API, an interactive directory of 600+ Michigan environmental organizations, and more, all through conversational AI development. But what surprised her most wasn\u2019t how much AI could do. It was how much results improved once she started thinking like a software engineer. Adopting a spec-driven process, defining who a tool is for, what working correctly looks like, and what broken looks like before touching any code, made everything better. \n\nUnderstanding basic architecture concepts meant more useful conversations with AI tools, fewer late-stage surprises, and tools that actually held up in production. The second half of the session turns it over to participants. In small groups, attendees will take a real problem from their own newsroom and work through the first steps of building a solution, drafting a spec, scoping the problem, thinking through edge cases. Everyone leaves with something concrete they can actually use, and a better sense of what\u2019s within reach when you pair curiosity with a little engineering discipline."
-  },  {
+    "description": "Creating tools to automate or enable new workflows is tough, even with AI. It's not just about writing the code — translating ideas into a product that works takes time, effort, and planning beyond that. If you're starting from scratch, where do you start?\n\nThis hands-on session will walk participants through designing and building a web scraper with no prior coding experience, focusing on a process that starts with defining user requirements and planning a technical spec before any code is written at all. Participants will leave with a scraper of their own and foundational knowledge of how to approach coding with AI — along with resources to build on that foundation in their newsrooms."
+  },  
+  {
     "id": "understanding-cultural-memory-community-storytelling",
     "title": "Where stories actually live: Understanding cultural memory and community storytelling",
     "facilitators": "Anneshia Hardy",
