@@ -617,7 +617,7 @@
   {
     "id": "designing-tools-journalists-actually-use",
     "title": "Designing tools journalists actually use",
-    "description": "Internal newsroom tools and content management backends are frequently designed by remote engineering vendors who lack a deep understanding of actual newsroom deadlines and workflows. When editorial tools introduce friction, reporters develop ad-hoc workarounds that can break data standards and delay publication tracks.\n\nThis presentation offers a look into user research, prototyping cycles, and feedback tracking built directly around newsroom desks. We will highlight methods for running contextual inquiries with editors, identifying operational friction points, and prioritizing iterative feature requests. You'll learn practical interface design principles to help you build software that news nerds love to use.",
+    "description": "Journalists complain about and build tools all the time, but are we designing them with real newsroom constraints or user interest in mind?\n\nWe build:\n* Databases and dashboards that aren\u2019t updated\n* Databases of names of journalists. Does anyone use them?\n* AI tools no one trusts\n* Tools that are replications of what\u2019s already been done\n\nThis interactive session will examine how tools get built and how do we get people to adopt them? When should we not build?",
     "facilitators": "Monica Williams",
     "time": "11:15am-12:30pm",
     "day": "Thursday",
