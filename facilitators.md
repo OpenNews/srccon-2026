@@ -85,7 +85,7 @@ Think workshops, not presentations. Conversations, not panels. SRCCON attendees 
 
 ## Facilitation tips {#facilitation}
 
-Once you're at the venue, conference staff and volunteers will be there to answer questions and help you with any problems that come up. We also have a Monday night facilitator meetup before SRCCON so you can see the venue and check out the room for your session. Here are a few more things to help you anticipate what the facilitation experience will be like:
+Once you're at the venue, conference staff and volunteers will be there to answer questions and help you with any problems that come up. We also have a Tuesday night facilitator meetup before SRCCON so you can see the venue and check out the room for your session. Here are a few more things to help you anticipate what the facilitation experience will be like:
 
 #### You get to set the expectations and tone {#tone}
 
@@ -94,7 +94,7 @@ As a facilitator, you have the power to establish norms, keep track of time, and
 - Lead with your agenda! Share your plan out loud as you get started, check along the way that you're making progress toward goals, and review things together at the end of the session.
 - Ask who's in the room with you: Mostly journalists? Mostly developers? Who else? Starting off with a "temperature check" can help you tailor your conversations.
 - "Being here as a group gives a chance to learn from _everyone_, so let’s make a point of being curious and generous with each other."
-- "If we end up using any jargon, let’s explain it for people hearing it for the first time."
+- "If we end up using any jargon, let’s explain it for people encountering it for the first time."
 
 **We encourage you to use your power as facilitator.** You can decide how to handle unexpected challenges, and when to revise or throw out your original plan. You can guide the tenor of the discussion—it’s a conversation, not a debate. If a few people are doing most of the chatting, you can always invite new voices with a "who haven't we had a chance to hear from yet?"
 
