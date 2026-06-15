@@ -195,21 +195,6 @@
     "notepad": ""
   },
   {
-    "id": "make-data-public-usable",
-    "title": "Make your data public (and usable)",
-    "description": "Too often in journalism, big data projects make a huge impact in communities across the country and world. And under the guise of competition, or just lack of resources, the raw data that could be useful for so many other things stays hidden on one person's computer.\n\nLet's talk about how to get more of our data available to the public and in a useful format (i.e. downloadable data in smaller chunks for people who don't know how to use anything but Excel). And let's talk about making it a part of our permanent workflows.",
-    "facilitators": "Steven Rich, Christian Martinez",
-    "time": "11:45am-1pm",
-    "day": "Wednesday",
-    "timeblock": "wednesday-am-2",
-    "room": "Johnson",
-    "everyone": "",
-    "social": "",
-    "break": "",
-    "transcription": "y",
-    "notepad": ""
-  },
-  {
     "id": "wednesday-lunch",
     "title": "Lunch at SRCCON",
     "description": "Let's eat together! Meals are provided when you attend SRCCON, and our local caterer will have tasty options for all dietary needs.",
@@ -822,6 +807,21 @@
     "social": "",
     "break": "",
     "transcription": "y",
+    "notepad": ""
+  },
+    {
+    "id": "gambling-prediction-markets",
+    "title": "How do gambling and prediction markets impact quality journalism?",
+    "description": "Prediction markets claim they provide the wisdom of crowds, not just for sports, but now for anything under the sun (and sometimes literally the sun, with the ability to predict the weather!). CNN, Forbes, and others have turned to prediction markets as a new revenue opportunity and are now using their data as a way to inform their audiences. Companies like Kalshi and Polymarket are at times are ahead of opinion polls, but also at times are just as reactionary or even more so than traditional polling. Let's talk about how we got here and what it all means for journalism. Do prediction markets provide value or is it just another way for money to influence the way a conversation is had around the important issues of the day?",
+    "facilitators": "David Fucillo",
+    "time": "3:45-5pm",
+    "day": "Thursday",
+    "timeblock": "thursday-pm-2",
+    "room": "heritage",
+    "everyone": "",
+    "social": "",
+    "break": "",
+    "transcription": "",
     "notepad": ""
   },
   {
