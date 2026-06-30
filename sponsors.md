@@ -28,7 +28,7 @@ We are social investors who support democracy by funding free expression and jou
 
 ### Local Event Sponsor
 
-[![Minnesota Public Radio](https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRohhdGZpmi-p3fP168GWztQDxSkHxp1swTOT8-jxHPPxNKs8CpsHOYo4o&s=10)(https://www.mpr.org)]
+[![Minnesota Public Radio](https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRohhdGZpmi-p3fP168GWztQDxSkHxp1swTOT8-jxHPPxNKs8CpsHOYo4o&s=10)](https://www.mpr.org)
 
 ### Meal and Break sponsors {#snacks}
 
