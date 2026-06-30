@@ -22,25 +22,28 @@ We are social investors who support democracy by funding free expression and jou
 
 [![Democracy Fund](/media/img/partners/democracy_fund.png)](https://www.democracyfund.org/)
 
+[![The Lenfest Institute](/media/img/partners/lenfest.png)](https://www.lenfestinstitute.org/)
+
 [![Freedom of the Press Foundation](/media/img/partners/fopf.png)](https://freedom.press)
+
+### Local Event Sponsor
+
+[![Minnesota Public Radio](https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRohhdGZpmi-p3fP168GWztQDxSkHxp1swTOT8-jxHPPxNKs8CpsHOYo4o&s=10)](https://www.mpr.org)
 
 ### Meal and Break sponsors {#snacks}
 
 [![University of Missouri School of Journalism](/media/img/partners/mizzou_journalism.png)](https://journalism.missouri.edu/)
 
-
 [![Alley Interactive](/media/img/partners/alley.png)](https://alley.co/)
-
 
 [![JSK Fellowships](/media/img/partners/jsk.png)](https://jsk.stanford.edu/)
 
+[![Poynter](/media/img/partners/Poynter.png)](https://www.poynter.org)
 
 [![OpenNews Sustaining Members](/media/img/partners/opennews_sustainers.png)](https://opennews.org/donate/)
 
 
 {% comment %}<!-- remove to add -->
-
-[![The Lenfest Institute](/media/img/partners/lenfest.png)](https://www.lenfestinstitute.org/)
 
 [![News Futures](/media/img/partners/news_futures.png)](https://www.newsfutures.org/)
 
