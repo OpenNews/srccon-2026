@@ -34,9 +34,7 @@ We are social investors who support democracy by funding free expression and jou
 
 [![University of Missouri School of Journalism](/media/img/partners/mizzou_journalism.png)](https://journalism.missouri.edu/)
 
-
 [![Alley Interactive](/media/img/partners/alley.png)](https://alley.co/)
-
 
 [![JSK Fellowships](/media/img/partners/jsk.png)](https://jsk.stanford.edu/)
 
