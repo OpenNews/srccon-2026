@@ -38,7 +38,7 @@ We are social investors who support democracy by funding free expression and jou
 
 [![JSK Fellowships](/media/img/partners/jsk.png)](https://jsk.stanford.edu/)
 
-[![Poynter](/media/img/partners/Poynter.png)(https://www.poynter.org)]
+[![Poynter](/media/img/partners/Poynter.png)](https://www.poynter.org)
 
 [![OpenNews Sustaining Members](/media/img/partners/opennews_sustainers.png)](https://opennews.org/donate/)
 
